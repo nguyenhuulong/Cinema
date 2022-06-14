@@ -1,0 +1,260 @@
+﻿
+@{
+    ViewBag.Title = "OREGON Cinema | Trang chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="homepage" id="homepage">
+
+    <!-- start slider -->
+
+    <div id="slider" class="carousel slide" data-ride="carousel">
+        <ul class="carousel-indicators">
+            <li data-target="#slider" data-slide-to="0" class="active"></li>
+            <li data-target="#slider" data-slide-to="1"></li>
+            <li data-target="#slider" data-slide-to="2"></li>
+            <li data-target="#slider" data-slide-to="3"></li>
+            <li data-target="#slider" data-slide-to="4"></li>
+
+        </ul>
+        <div class="carousel-inner" style="background-color: black;">
+            @*<div class="carousel-item active ">
+                <a href="/Movie/Details?id=@ViewBag.slide[0].MovieID">
+                    <img draggable="false" src="~/images/ads/@ViewBag.slide[0].Banner" alt="" class="img-fluid">
+                </a>
+            </div>
+            <div class="carousel-item ">
+                <a href="/Movie/Details?id=@ViewBag.slide[1].MovieID">
+                    <img draggable="false" src="~/images/ads/@ViewBag.slide[1].Banner" alt="" class="img-fluid">
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a href="/Cinematic/DetailPost?id=@ViewBag.slide[2].PostID">
+                    <img draggable="false" src="~/images/ads/@ViewBag.slide[2].Banner" alt="" class="img-fluid">
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a href="/Cinematic/DetailPost?id=@ViewBag.slide[3].PostID">
+                    <img draggable="false" src="~/images/ads/@ViewBag.slide[3].Banner" alt="" class="img-fluid">
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a href="/Movie/Details?id=@ViewBag.slide[4].MovieID">
+                    <img draggable="false" src="~/images/ads/@ViewBag.slide[4].Banner" alt="" class="img-fluid">
+                </a>
+            </div>*@
+        </div>
+        <a class="carousel-control-prev" href="#slider" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#slider" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <!-- end slider -->
+    <!-- start phim hot -->
+
+    <div class="main-1">
+        <section class="cd-section cd-section--bg-fixed" style="background-image: url('/public/bgim5.jpg')">
+            <div class="max-width-sm">
+                <div class="text-component text-center">
+                    <div class="movie-selection">
+                        <h1 id="title-mv">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i> PHIM HOT <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </h1>
+                        <div class="list-movie">
+                            <div class="carousel" data-flickity='{ "groupCells": true }'>
+                                @*@foreach (var item in ViewBag.movie)
+                                {
+                                    <a class="carousel-cell" href="/Movie/Details?id=@item.MovieID" style="background-image: url('/images/movie/poster/@item.PosterLink')"></a>
+                                }*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- end phim hot -->
+    <!-- start bai dang -->
+
+    <div class="main-2">
+        <div class="container px-0">
+            <div class="content-1 row mb-5">
+                <div class="review col-md-6 align-items-center">
+                    <a href="/Cinematic/Review"><h5 class="content-title">BÌNH LUẬN PHIM</h5></a>
+                    <div class="content-title-line"></div>
+                    @*@foreach (var item in ViewBag.blp)
+                    {
+                        <div class="review-media mt-5 align-items-center" onclick="redirect('post')">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href="/Cinematic/DetailPost?id=@item.PostID">
+                                        <img class="review-thumb img-fluid mb-2" src="~/images/post-thumbnail/review/@item.PostThumbnail">
+                                    </a>
+                                </div>
+                                <div class="review-content col-md-6 align-items-center">
+                                    <a href="/Cinematic/DetailPost?id=@item.PostID"><h6>@item.PostTitle</h6></a>
+                                    <p>@item.PostDescription</p>
+                                </div>
+                            </div>
+                        </div>
+                    }*@
+                </div>
+                <div class="blog col-md-6 ml-3 align-items-center">
+                    <a href="/Cinematic/Blog"><h5 class="content-title">BLOG ĐIỆN ẢNH</h5></a>
+                    <div class="content-title-line"></div>
+                    @*@foreach (var item in ViewBag.blog)
+                    {
+                        <div class="blog-media mt-5" onclick="redirect('post')">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href="/Cinematic/DetailPost?id=@item.PostID">
+                                        <img class="review-thumb img-fluid mb-2" src="~/images/post-thumbnail/blog/@item.PostThumbnail">
+                                    </a>
+                                </div>
+                                <div class="blog-content col-md-6 align-items-center">
+                                    <a href="/Cinematic/DetailPost?id=@item.PostID"><h6>@item.PostTitle</h6></a>
+                                    <p>@item.PostDescription</p>
+                                </div>
+                            </div>
+                        </div>
+                    }*@
+                </div>
+            </div>
+            <div class="content-2">
+                <a href="/Cinematic/Sale"><h5 class="content-title">TIN KHUYẾN MÃI</h5></a>
+                <div class="content-title-line"></div>
+                <div class="sales">
+                    @*@foreach (var item in ViewBag.sale)
+                    {
+                        <div class="sales-container col-md-3 col-sm-6 px-0 mr-3">
+                            <img src="~/images/post-thumbnail/sales/@item.PostThumbnail" alt="" class="sales-thumb text-center">
+                            <div class="sales-middle">
+                                <div class="sales-title">@item.PostTitle</div>
+                                <div class="sales-text">@item.PostDescription</div>
+                                <a class="sales-button" href="/Cinematic/DetailPost?id=@item.PostID">XEM CHI TIẾT</a>
+                            </div>
+                        </div>
+                    }*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- end bai dang -->
+    <!-- start quick buy -->
+
+    <div class="quick-buy" id="quick-buy">
+        <span id="exit" class="text-light float-right p-1" style="font-size: 20px;position: relative;top: 0;" onclick="collapseQB(2)"> X </span>
+        <form class="quick-buy-form">
+            <p>ĐẶT VÉ NHANH: </p>
+            @*<select class="select-box" id="location">
+                @if (ViewBag.checklocation == "none")
+                {
+                    <option selected value="none">Chọn tỉnh/thành phố</option>
+                }
+                @foreach (var item in ViewBag.listlocation)
+                {
+                    if (item.LocationName == ViewBag.checklocation)
+                    {
+                        <option selected>@item.LocationName</option>
+                        continue;
+                    }
+                    <option value="@item.LocationName">@item.LocationName</option>
+                }
+            </select>*@
+            <select class="select-box" id="cinema">
+                <option selected value="none">Chọn rạp</option>
+            </select>
+            <select class="select-box" id="movie">
+                <option selected value="none">Chọn phim</option>
+            </select>
+            <select class="select-box" id="showtime">
+                <option selected value="none">Chọn thời gian</option>
+            </select>
+            <input type="button" class="btn-quick-buy" onclick="showtime1()" value="Đặt chỗ" id="signupbtn" />
+        </form>
+    </div>
+    <div class="modal fade" id="SelectTicket" role="dialog"></div>
+    <button class="btn btn-success fixed-bottom w-100" id="quickbuycol" onclick="collapseQB(1)">Đặt vé nhanh</button>
+
+    <!-- end quick buy -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#location").on('change', function () {
+                var SelectedId = $(this).val();
+                var str = "";
+                $.get('/Booking/Location', { location: SelectedId }, function (data) {
+                    str = str + "<option value='none' >Chọn rạp</option>";
+                    $.each(data, function (index, item) {
+
+                        str = str + "<option value='" + item.CinemaName + "' >" + item.CinemaName + "</option>";
+                    });
+                    $("#cinema").html(str);
+                });
+            });
+            $("#cinema").on('change', function () {
+                var SelectedId = $(this).val();
+                var str = "";
+                $.get('/Booking/Cinema', { cinema: SelectedId }, function (data) {
+                    str = str + "<option value='none' >Chọn phim</option>";
+                    $.each(data, function (index, item) {
+                        str = str + "<option value='" + item.MovieName + "' >" + item.MovieName + "</option>";
+                    });
+                    $("#movie").html(str);
+                });
+            });
+            $("#movie").on('change', function () {
+                var SelectedId = $(this).val();
+                var cinema = $('#cinema').val();
+                var str = "";
+                $.get('/Booking/ShowTime', { movie: SelectedId, cinemaname: cinema }, function (data) {
+                    str = str + "<option value='none' >Chọn thời gian</option>";
+                    $.each(data, function (index, item) {
+                        str = str + "<option value='" + item.showtime + " - " + "Phòng " + item.roomid + " - " + item.screentype + "' >" + item.showtime + " - " + item.screentype + "</option>";
+                    });
+                    $("#showtime").html(str);
+                });
+            });
+        });
+        var flag = false;
+        function showtime1() {
+            var showtimex = $('#showtime').val().split(" - ")[0];
+            var ca = $('#showtime').val().split(" - ")[1];
+            var room = ca.split(" ")[1];
+            var type = $('#showtime').val().split(" - ")[2];
+            var fn = $('#movie').val();
+            var cn = $('#cinema').val();
+            if (showtimex != "none" && fn != "none" && cn != "none") {
+                $.get('/Ticket/SelectTicket', { cinemaname: cn, datetime: Date.now.toString(), showtime: showtimex, room: room, screentype: type, filmname: fn }, function (data) {
+                    $('#SelectTicket').html(data);
+                    $('#SelectTicket').modal('show');
+                    flag = true;
+                });
+            }
+        }
+        document.addEventListener(
+            "click",
+            function (event) {
+                // If user either clicks X button OR clicks outside the modal window, then close modal by calling closeModal()
+                if (!event.target.closest("#SelectTicket")) {
+                    if (flag == true) {
+                        this.location.reload();
+                    }
+                }
+            },
+            false
+        );
+    </script>
+</div>
