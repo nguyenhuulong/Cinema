@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "OREGON Cinema | Thông tin phim";
+  
+}
+
+<div class="film-profile" id="profile">
+    <div class="details-container text-center">
+        <div class="movie-details-container ">
+
+            <div class="Khung col-8">
+                <div class="movie-details-title">
+                    <div class="movie-poster">
+                        <img src="~/images/movie/poster/@ViewBag.detail.PosterLink" class="poster">
+                    </div>
+                    <div class="movie-details ml-3">
+                        <h1>@ViewBag.detail.MovieName</h1>
+                        <p><span>Đánh giá: </span><strong>@ViewBag.detail.IMDb/10</strong></p>
+                        <p><span>Thời lượng: </span><strong>@ViewBag.detail.MovieLength phút</strong></p>
+                        <p><span>Đạo diễn: </span><strong>@ViewBag.detail.Director</strong></p>
+                        <p><span>Thể loại: </span><strong>@ViewBag.detail.Category</strong></p>
+                        <p><span>Quốc gia: </span><strong>@ViewBag.detail.Nation</strong></p>
+                        <p><span>Nhà sản xuất: </span><strong>Warner Bros</strong></p>
+                        <p><span>Diễn viên: </span><strong>@ViewBag.detail.Actor</strong></p>
+                        @if (@ViewBag.detail.MovieStatus == 2)
+                        {
+                            <a class="btn btn-block btn-base-color" href="/Booking/Booking?name=@ViewBag.detail.MovieName&location=all"><i class="fa fa-film" aria-hidden="true"></i> ĐẶT VÉ</a>
+                        }
+                    </div>
+                </div>
+                <div class="contentfilm">
+                    <h3>NỘI DUNG PHIM</h3>
+                    <hr>
+                    <p>@ViewBag.detail.MovieDescription</p>
+
+                    <div class="trailer">
+                        <div class="embed-container">
+                            <iframe src="@ViewBag.detail.TrailerLink" frameborder="0"
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <h5>PHIM ĐANG CHIẾU</h5>
+                <div class="content-title-line mb-5"></div>
+                <div class="movie-item">
+                    <img src="~/images/ads/shangchiads.jpg">
+                    <a href="#"></a>
+                </div>
+                <div class="movie-title">
+                    <p>SHANG-CHI AND THE LEGEND OF THE TEN RING</p>
+                    <p>SHANG-CHI VÀ HUYỀN THOẠI THẬP LUÂN</p>
+                </div>
+                <div class="movie-item">
+                    <img src="~/images/ads/aquietplace2ads.jpg">
+                    <a href="#"></a>
+                </div>
+                <div class="movie-title">
+                    <p>A QUIET PLACE</p>
+                    <p>VÙNG ĐẤT CÂM LẶNG</p>
+                </div>
+                <div class="movie-item">
+                    <img src="~/images/ads/satnhantrongguongads.jpg">
+                    <a href="#"></a>
+                </div>
+                <div class="movie-title">
+                    <p>CANDYMAN</p>
+                    <p>SÁT NHÂN TRONG GƯƠNG</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

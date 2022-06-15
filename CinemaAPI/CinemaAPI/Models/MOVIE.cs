@@ -1,10 +1,12 @@
 namespace CinemaAPI.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Runtime.Serialization;
 
     [Table("MOVIE")]
     public partial class MOVIE
@@ -52,6 +54,8 @@ namespace CinemaAPI.Models
 
         public byte? MovieStatus { get; set; }
 
+        [JsonIgnore]
+        [IgnoreDataMember]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MOVIE_TIME> MOVIE_TIME { get; set; }
     }
