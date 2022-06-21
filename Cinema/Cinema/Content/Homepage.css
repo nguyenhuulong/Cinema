@@ -752,24 +752,7 @@ iframe {
   height: 40px;
 }
 
-*,
-:after,
-:before {
-  box-sizing: border-box;
-}
-.clearfix:after,
-.clearfix:before {
-  content: "";
-  display: table;
-}
-.clearfix:after {
-  clear: both;
-  display: block;
-}
-a {
-  color: inherit;
-  text-decoration: none;
-}
+/* start login */
 
 .login-wrap {
   width: 100%;
@@ -1327,6 +1310,8 @@ strong {
     line-height: 1.5rem;
     padding: 2px;
 }
+
+/* end support */
 
 /* booking start */
 

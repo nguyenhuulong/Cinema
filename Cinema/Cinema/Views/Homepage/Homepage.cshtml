@@ -5,9 +5,7 @@
 }
 
 <div class="homepage" id="homepage">
-
     <!-- start slider -->
-
     <div id="slider" class="carousel slide" data-ride="carousel">
         <ul class="carousel-indicators">
             <li data-target="#slider" data-slide-to="0" class="active"></li>
@@ -15,7 +13,6 @@
             <li data-target="#slider" data-slide-to="2"></li>
             <li data-target="#slider" data-slide-to="3"></li>
             <li data-target="#slider" data-slide-to="4"></li>
-
         </ul>
         <div class="carousel-inner" style="background-color: black;">
             @*<div class="carousel-item active ">
@@ -55,6 +52,7 @@
     </div>
 
     <!-- end slider -->
+
     <!-- start phim hot -->
 
     <div class="main-1">
@@ -71,10 +69,10 @@
                         </h1>
                         <div class="list-movie">
                             <div class="carousel" data-flickity='{ "groupCells": true }'>
-                                @*@foreach (var item in ViewBag.movie)
+                                @foreach (var item in ViewBag.movie)
                                 {
                                     <a class="carousel-cell" href="/Movie/Details?id=@item.MovieID" style="background-image: url('/images/movie/poster/@item.PosterLink')"></a>
-                                }*@
+                                }
                             </div>
                         </div>
                     </div>
@@ -84,6 +82,7 @@
     </div>
 
     <!-- end phim hot -->
+
     <!-- start bai dang -->
 
     <div class="main-2">
@@ -151,13 +150,14 @@
     </div>
 
     <!-- end bai dang -->
+
     <!-- start quick buy -->
 
     <div class="quick-buy" id="quick-buy">
-        <span id="exit" class="text-light float-right p-1" style="font-size: 20px;position: relative;top: 0;" onclick="collapseQB(2)"> X </span>
+        @*<span id="exit" class="text-light float-right p-1" style="font-size: 20px;position: relative;top: 0;" onclick="collapseQB(2)"> X </span>*@
         <form class="quick-buy-form">
             <p>ĐẶT VÉ NHANH: </p>
-            @*<select class="select-box" id="location">
+            <select class="select-box" id="location">
                 @if (ViewBag.checklocation == "none")
                 {
                     <option selected value="none">Chọn tỉnh/thành phố</option>
@@ -171,7 +171,7 @@
                     }
                     <option value="@item.LocationName">@item.LocationName</option>
                 }
-            </select>*@
+            </select>
             <select class="select-box" id="cinema">
                 <option selected value="none">Chọn rạp</option>
             </select>
@@ -198,7 +198,6 @@
                 $.get('/Booking/Location', { location: SelectedId }, function (data) {
                     str = str + "<option value='none' >Chọn rạp</option>";
                     $.each(data, function (index, item) {
-
                         str = str + "<option value='" + item.CinemaName + "' >" + item.CinemaName + "</option>";
                     });
                     $("#cinema").html(str);

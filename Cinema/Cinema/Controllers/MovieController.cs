@@ -23,15 +23,14 @@ namespace Cinema.Controllers
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
          
-            var responseMessage = client.GetAsync("GetMOVIE/MV0001");
+            var responseMessage = client.GetAsync("GetMOVIE/MV0002");
             responseMessage.Wait();
 
             var result = responseMessage.Result;
             if(result.IsSuccessStatusCode)
             {
                 var readTask = result.Content.ReadAsStringAsync();
-                readTask.Wait();
-           
+                readTask.Wait();           
                 ViewBag.detail = JObject.Parse(readTask.Result);
             }
             return View();
