@@ -155,4 +155,3 @@ C:\Users\duong\OneDrive\Desktop\LeQuangMinh\LTTH\Cinema\Cinema\Cinema\obj\Debug\
 C:\Users\duong\OneDrive\Desktop\LeQuangMinh\LTTH\Cinema\Cinema\Cinema\obj\Debug\Cinema.csproj.CopyComplete
 C:\Users\duong\OneDrive\Desktop\LeQuangMinh\LTTH\Cinema\Cinema\Cinema\obj\Debug\Cinema.dll
 C:\Users\duong\OneDrive\Desktop\LeQuangMinh\LTTH\Cinema\Cinema\Cinema\obj\Debug\Cinema.pdb
-D:\Documents\Cinema\Cinema\Cinema\Cinema\obj\Debug\Cinema.csproj.AssemblyReference.cache

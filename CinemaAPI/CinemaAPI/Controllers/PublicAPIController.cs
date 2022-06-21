@@ -17,7 +17,6 @@ namespace CinemaAPI.Controllers
     {
         private CinemaDB db = new CinemaDB();
 
-        // GET: api/PublicAPI
         [HttpGet]
         [ResponseType(typeof(CINEMA_LOCATION))]
         public async Task<IHttpActionResult> GetLocationInfo()
@@ -31,113 +30,127 @@ namespace CinemaAPI.Controllers
 
             return Json(locations);
         }
-/*
-        // GET: api/PublicAPI/5
-        [ResponseType(typeof(CINEMA))]
-        public async Task<IHttpActionResult> GetCINEMA(string id)
+
+        [HttpGet]
+        [ResponseType(typeof(AD))]
+        public async Task<IHttpActionResult> GetListSlide()
         {
-            CINEMA cINEMA = await db.CINEMAs.FindAsync(id);
-            if (cINEMA == null)
+            var ads = db.Database.SqlQuery<AD>("exec GetListSlide");
+            await ads.ToListAsync();
+            if (ads == null)
             {
                 return NotFound();
             }
 
-            return Ok(cINEMA);
+            return Json(ads);
         }
-
-        // PUT: api/PublicAPI/5
-        [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutCINEMA(string id, CINEMA cINEMA)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != cINEMA.CinemaID)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(cINEMA).State = EntityState.Modified;
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CINEMAExists(id))
+        /*
+                // GET: api/PublicAPI/5
+                [ResponseType(typeof(CINEMA))]
+                public async Task<IHttpActionResult> GetCINEMA(string id)
                 {
-                    return NotFound();
+                    CINEMA cINEMA = await db.CINEMAs.FindAsync(id);
+                    if (cINEMA == null)
+                    {
+                        return NotFound();
+                    }
+
+                    return Ok(cINEMA);
                 }
-                else
+
+                // PUT: api/PublicAPI/5
+                [ResponseType(typeof(void))]
+                public async Task<IHttpActionResult> PutCINEMA(string id, CINEMA cINEMA)
                 {
-                    throw;
+                    if (!ModelState.IsValid)
+                    {
+                        return BadRequest(ModelState);
+                    }
+
+                    if (id != cINEMA.CinemaID)
+                    {
+                        return BadRequest();
+                    }
+
+                    db.Entry(cINEMA).State = EntityState.Modified;
+
+                    try
+                    {
+                        await db.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!CINEMAExists(id))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+
+                    return StatusCode(HttpStatusCode.NoContent);
                 }
-            }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/PublicAPI
-        [ResponseType(typeof(CINEMA))]
-        public async Task<IHttpActionResult> PostCINEMA(CINEMA cINEMA)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.CINEMAs.Add(cINEMA);
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (CINEMAExists(cINEMA.CinemaID))
+                // POST: api/PublicAPI
+                [ResponseType(typeof(CINEMA))]
+                public async Task<IHttpActionResult> PostCINEMA(CINEMA cINEMA)
                 {
-                    return Conflict();
+                    if (!ModelState.IsValid)
+                    {
+                        return BadRequest(ModelState);
+                    }
+
+                    db.CINEMAs.Add(cINEMA);
+
+                    try
+                    {
+                        await db.SaveChangesAsync();
+                    }
+                    catch (DbUpdateException)
+                    {
+                        if (CINEMAExists(cINEMA.CinemaID))
+                        {
+                            return Conflict();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+
+                    return CreatedAtRoute("DefaultApi", new { id = cINEMA.CinemaID }, cINEMA);
                 }
-                else
+
+                // DELETE: api/PublicAPI/5
+                [ResponseType(typeof(CINEMA))]
+                public async Task<IHttpActionResult> DeleteCINEMA(string id)
                 {
-                    throw;
+                    CINEMA cINEMA = await db.CINEMAs.FindAsync(id);
+                    if (cINEMA == null)
+                    {
+                        return NotFound();
+                    }
+
+                    db.CINEMAs.Remove(cINEMA);
+                    await db.SaveChangesAsync();
+
+                    return Ok(cINEMA);
                 }
-            }
 
-            return CreatedAtRoute("DefaultApi", new { id = cINEMA.CinemaID }, cINEMA);
-        }
+                protected override void Dispose(bool disposing)
+                {
+                    if (disposing)
+                    {
+                        db.Dispose();
+                    }
+                    base.Dispose(disposing);
+                }
 
-        // DELETE: api/PublicAPI/5
-        [ResponseType(typeof(CINEMA))]
-        public async Task<IHttpActionResult> DeleteCINEMA(string id)
-        {
-            CINEMA cINEMA = await db.CINEMAs.FindAsync(id);
-            if (cINEMA == null)
-            {
-                return NotFound();
-            }
-
-            db.CINEMAs.Remove(cINEMA);
-            await db.SaveChangesAsync();
-
-            return Ok(cINEMA);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool CINEMAExists(string id)
-        {
-            return db.CINEMAs.Count(e => e.CinemaID == id) > 0;
-        }*/
+                private bool CINEMAExists(string id)
+                {
+                    return db.CINEMAs.Count(e => e.CinemaID == id) > 0;
+                }*/
     }
 }

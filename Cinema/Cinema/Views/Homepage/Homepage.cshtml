@@ -15,7 +15,7 @@
             <li data-target="#slider" data-slide-to="4"></li>
         </ul>
         <div class="carousel-inner" style="background-color: black;">
-            @*<div class="carousel-item active ">
+            <div class="carousel-item active ">
                 <a href="/Movie/Details?id=@ViewBag.slide[0].MovieID">
                     <img draggable="false" src="~/images/ads/@ViewBag.slide[0].Banner" alt="" class="img-fluid">
                 </a>
@@ -39,7 +39,7 @@
                 <a href="/Movie/Details?id=@ViewBag.slide[4].MovieID">
                     <img draggable="false" src="~/images/ads/@ViewBag.slide[4].Banner" alt="" class="img-fluid">
                 </a>
-            </div>*@
+            </div>
         </div>
         <a class="carousel-control-prev" href="#slider" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -91,7 +91,7 @@
                 <div class="review col-md-6 align-items-center">
                     <a href="/Cinematic/Review"><h5 class="content-title">BÌNH LUẬN PHIM</h5></a>
                     <div class="content-title-line"></div>
-                    @*@foreach (var item in ViewBag.blp)
+                    @foreach (var item in ViewBag.blp)
                     {
                         <div class="review-media mt-5 align-items-center" onclick="redirect('post')">
                             <div class="row">
@@ -106,12 +106,12 @@
                                 </div>
                             </div>
                         </div>
-                    }*@
+                    }
                 </div>
                 <div class="blog col-md-6 ml-3 align-items-center">
                     <a href="/Cinematic/Blog"><h5 class="content-title">BLOG ĐIỆN ẢNH</h5></a>
                     <div class="content-title-line"></div>
-                    @*@foreach (var item in ViewBag.blog)
+                    @foreach (var item in ViewBag.blog)
                     {
                         <div class="blog-media mt-5" onclick="redirect('post')">
                             <div class="row">
@@ -126,14 +126,14 @@
                                 </div>
                             </div>
                         </div>
-                    }*@
+                    }
                 </div>
             </div>
             <div class="content-2">
                 <a href="/Cinematic/Sale"><h5 class="content-title">TIN KHUYẾN MÃI</h5></a>
                 <div class="content-title-line"></div>
                 <div class="sales">
-                    @*@foreach (var item in ViewBag.sale)
+                    @foreach (var item in ViewBag.sale)
                     {
                         <div class="sales-container col-md-3 col-sm-6 px-0 mr-3">
                             <img src="~/images/post-thumbnail/sales/@item.PostThumbnail" alt="" class="sales-thumb text-center">
@@ -143,7 +143,7 @@
                                 <a class="sales-button" href="/Cinematic/DetailPost?id=@item.PostID">XEM CHI TIẾT</a>
                             </div>
                         </div>
-                    }*@
+                    }
                 </div>
             </div>
         </div>
