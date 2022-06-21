@@ -152,12 +152,12 @@ namespace Cinema.Controllers
                             {
                                 list2d.Add(o);
                             }
-                            item.type1 = list2d.ToArray();
+                            item.Add("typeA", JArray.FromObject(list2d));
                         }
 
                         /*item.type1 = db.Database.SqlQuery<ShowTime>($"exec GetList2DRoomFromFilm N'{cinemaname}',N'{item.MovieName}', N'2021-10-25'").ToList();*/
 
-                        foreach (var item1 in item.type1)
+                        foreach (var item1 in item.typeA)
                         {
                             /*Call QuantityLeft API*/
                             List<JObject> left = new List<JObject>(9999);
@@ -175,12 +175,7 @@ namespace Cinema.Controllers
                             {
                                 var readTask = result.Content.ReadAsStringAsync();
                                 readTask.Wait();
-                                JArray listFilmJA = JArray.Parse(readTask.Result);
-                                foreach (JObject o in listFilmJA.Children<JObject>())
-                                {
-                                    left.Add(o);
-                                }
-                                item1.seat_available = left[0];
+                                item1.seat_available = readTask.Result;
                             }
                             /*item1.seat_available = db.Database.SqlQuery<int>($"exec QuantityLeft N'{item.MovieName}', '{item1.roomid}',N'{item1.showtime}'").ToList()[0];*/
                         }
@@ -206,12 +201,12 @@ namespace Cinema.Controllers
                             {
                                 list3d.Add(o);
                             }
-                            item.type2 = list3d;
+                            item.Add("typeB", JArray.FromObject(list3d));
                         }
 
                         /*item.type2 = db.Database.SqlQuery<ShowTime>($"exec GetList3DRoomFromFilm N'{cinemaname}',N'{item.MovieName}', N'2021-10-25'").ToList();*/
                         
-                        foreach (var item1 in item.type2)
+                        foreach (var item1 in item.typeB)
                         {
                             /*Call QuantityLeft API*/
                             List<JObject> left = new List<JObject>(9999);
@@ -229,12 +224,13 @@ namespace Cinema.Controllers
                             {
                                 var readTask = result.Content.ReadAsStringAsync();
                                 readTask.Wait();
-                                JArray listFilmJA = JArray.Parse(readTask.Result);
+                                /*JArray listFilmJA = JArray.Parse(readTask.Result);
                                 foreach (JObject o in listFilmJA.Children<JObject>())
                                 {
                                     left.Add(o);
                                 }
-                                item1.seat_available = left[0];
+                                item1.seat_available = left[0];*/
+                                item1.seat_available = readTask.Result;
                             }
                             /*item1.seat_available = db.Database.SqlQuery<int>($"exec QuantityLeft N'{item.MovieName}', '{item1.roomid}',N'{item1.showtime}'").ToList()[0];*/
                         }
@@ -260,12 +256,12 @@ namespace Cinema.Controllers
                             {
                                 list4d.Add(o);
                             }
-                            item.type3 = list4d;
+                            item.Add("typeC", JArray.FromObject(list4d));
                         }
 
                         /*item.type3 = db.Database.SqlQuery<ShowTime>($"exec GetList4DRoomFromFilm N'{cinemaname}',N'{item.MovieName}', N'2021-10-25'").ToList();*/
                         
-                        foreach (var item1 in item.type3)
+                        foreach (var item1 in item.typeC)
                         {
                             /*Call QuantityLeft API*/
                             List<JObject> left = new List<JObject>(9999);
@@ -283,12 +279,14 @@ namespace Cinema.Controllers
                             {
                                 var readTask = result.Content.ReadAsStringAsync();
                                 readTask.Wait();
-                                JArray listFilmJA = JArray.Parse(readTask.Result);
+                                /*JArray listFilmJA = JArray.Parse(readTask.Result);
                                 foreach (JObject o in listFilmJA.Children<JObject>())
                                 {
                                     left.Add(o);
                                 }
-                                item1.seat_available = left[0];
+                                item1.seat_available = left[0];*/
+                                item1.seat_available = readTask.Result;
+
                             }
                             /*item1.seat_available = db.Database.SqlQuery<int>($"exec QuantityLeft N'{item.MovieName}', '{item1.roomid}',N'{item1.showtime}'").ToList()[0];*/
                         }

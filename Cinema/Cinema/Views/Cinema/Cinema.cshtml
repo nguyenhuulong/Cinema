@@ -116,12 +116,12 @@
                                             <li>Đạo diễn: @item.Director</li>
                                             <li>Diễn viên: @item.Actor</li>
                                         </div>
-                                        @if (item.type1.Count != 0)
+                                        @if (item.typeA.Count != 0)
                                         {
                                             <h5 class="mt-3 2D">2D</h5>
                                             <div class="row ">
 
-                                                @foreach (var item1 in item.type1)
+                                                @foreach (var item1 in item.typeA)
                                                 {
                                                     <div class="d-flex flex-column text-center justify-content-center mr-2 2D">
                                                         <button class="btn btn-base-color btn-lg " onclick="showtime1('@item1.movietimeid','@item1.showtime','3D','@ViewBag.checkcinema','@item1.roomid', '@item.MovieName')" type="submit">
@@ -134,13 +134,13 @@
                                             </div>
 
                                         }
-                                        @if (item.type2.Count != 0)
+                                        @if (item.typeB.Count != 0)
                                         {
                                             <h5 class="mt-3 3D">3D</h5>
 
                                             <div class="row ">
 
-                                                @foreach (var item1 in item.type2)
+                                                @foreach (var item1 in item.typeB)
                                                 {
                                                     <div class="d-flex flex-column text-center justify-content-center mr-2 3D">
                                                         <button class="btn btn-base-color btn-lg " onclick="showtime1('@item1.movietimeid','@item1.showtime','3D','@ViewBag.checkcinema','@item1.roomid', '@item.MovieName')" type="submit">
@@ -152,13 +152,13 @@
                                                 }
                                             </div>
                                         }
-                                        @if (item.type3.Count != 0)
+                                        @if (item.typeC.Count != 0)
                                         {
                                             <h5 class="mt-3 4Dx">4Dx</h5>
 
                                             <div class="row ">
 
-                                                @foreach (var item1 in item.type3)
+                                                @foreach (var item1 in item.typeC)
                                                 {
                                                     <div class="d-flex flex-column text-center justify-content-center mr-2 4Dx">
                                                         <button class="btn btn-base-color btn-lg " onclick="showtime1('@item1.movietimeid','@item1.showtime','3D','@ViewBag.checkcinema','@item1.roomid', '@item.MovieName')" type="submit">
