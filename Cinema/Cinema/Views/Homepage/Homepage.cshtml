@@ -52,7 +52,6 @@
     </div>
 
     <!-- end slider -->
-
     <!-- start phim hot -->
 
     <div class="main-1">
@@ -82,7 +81,6 @@
     </div>
 
     <!-- end phim hot -->
-
     <!-- start bai dang -->
 
     <div class="main-2">
@@ -150,110 +148,4 @@
     </div>
 
     <!-- end bai dang -->
-
-    <!-- start quick buy -->
-
-    <div class="quick-buy" id="quick-buy">
-        @*<span id="exit" class="text-light float-right p-1" style="font-size: 20px;position: relative;top: 0;" onclick="collapseQB(2)"> X </span>*@
-        <form class="quick-buy-form">
-            <p>ĐẶT VÉ NHANH: </p>
-            <select class="select-box" id="location">
-                @if (ViewBag.checklocation == "none")
-                {
-                    <option selected value="none">Chọn tỉnh/thành phố</option>
-                }
-                @foreach (var item in ViewBag.listlocation)
-                {
-                    if (item.LocationName == ViewBag.checklocation)
-                    {
-                        <option selected>@item.LocationName</option>
-                        continue;
-                    }
-                    <option value="@item.LocationName">@item.LocationName</option>
-                }
-            </select>
-            <select class="select-box" id="cinema">
-                <option selected value="none">Chọn rạp</option>
-            </select>
-            <select class="select-box" id="movie">
-                <option selected value="none">Chọn phim</option>
-            </select>
-            <select class="select-box" id="showtime">
-                <option selected value="none">Chọn thời gian</option>
-            </select>
-            <input type="button" class="btn-quick-buy" onclick="showtime1()" value="Đặt chỗ" id="signupbtn" />
-        </form>
-    </div>
-    <div class="modal fade" id="SelectTicket" role="dialog"></div>
-    <button class="btn btn-success fixed-bottom w-100" id="quickbuycol" onclick="collapseQB(1)">Đặt vé nhanh</button>
-
-    <!-- end quick buy -->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    @*<script>
-        $(document).ready(function () {
-            $("#location").on('change', function () {
-                var SelectedId = $(this).val();
-                var str = "";
-                $.get('/Booking/Location', { location: SelectedId }, function (data) {
-                    str = str + "<option value='none' >Chọn rạp</option>";
-                    $.each(data, function (index, item) {
-                        str = str + "<option value='" + item.CinemaName + "' >" + item.CinemaName + "</option>";
-                    });
-                    $("#cinema").html(str);
-                });
-            });
-            $("#cinema").on('change', function () {
-                var SelectedId = $(this).val();
-                var str = "";
-                $.get('/Booking/Cinema', { cinema: SelectedId }, function (data) {
-                    str = str + "<option value='none' >Chọn phim</option>";
-                    $.each(data, function (index, item) {
-                        str = str + "<option value='" + item.MovieName + "' >" + item.MovieName + "</option>";
-                    });
-                    $("#movie").html(str);
-                });
-            });
-            $("#movie").on('change', function () {
-                var SelectedId = $(this).val();
-                var cinema = $('#cinema').val();
-                var str = "";
-                $.get('/Booking/ShowTime', { movie: SelectedId, cinemaname: cinema }, function (data) {
-                    str = str + "<option value='none' >Chọn thời gian</option>";
-                    $.each(data, function (index, item) {
-                        str = str + "<option value='" + item.showtime + " - " + "Phòng " + item.roomid + " - " + item.screentype + "' >" + item.showtime + " - " + item.screentype + "</option>";
-                    });
-                    $("#showtime").html(str);
-                });
-            });
-        });
-        var flag = false;
-        function showtime1() {
-            var showtimex = $('#showtime').val().split(" - ")[0];
-            var ca = $('#showtime').val().split(" - ")[1];
-            var room = ca.split(" ")[1];
-            var type = $('#showtime').val().split(" - ")[2];
-            var fn = $('#movie').val();
-            var cn = $('#cinema').val();
-            if (showtimex != "none" && fn != "none" && cn != "none") {
-                $.get('/Ticket/SelectTicket', { cinemaname: cn, datetime: Date.now.toString(), showtime: showtimex, room: room, screentype: type, filmname: fn }, function (data) {
-                    $('#SelectTicket').html(data);
-                    $('#SelectTicket').modal('show');
-                    flag = true;
-                });
-            }
-        }
-        document.addEventListener(
-            "click",
-            function (event) {
-                // If user either clicks X button OR clicks outside the modal window, then close modal by calling closeModal()
-                if (!event.target.closest("#SelectTicket")) {
-                    if (flag == true) {
-                        this.location.reload();
-                    }
-                }
-            },
-            false
-        );
-    </script>*@
 </div>

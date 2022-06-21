@@ -488,13 +488,6 @@ a:hover {
     color: #2b6ec7;
 }
 
-.footer {
-    display: flex;
-    width: 100%;
-    background-color: #444444;
-    padding-bottom: 100px;
-}
-
 .footer-container {
     display: flex;
     width: 75%;

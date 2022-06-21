@@ -9,8 +9,12 @@
         margin: 0 auto;
         display: flex;
         justify-content: center;
-        padding: 30px 0 0 0;
+        padding: 30px 0 0 0 !important;
         text-align: left;
+    }
+    .movie-title p {
+        margin: 5px 0;
+        font-size: 18px !important;
     }
 </style>
 <div class="film-profile" id="profile">
@@ -58,7 +62,7 @@
                 @foreach (var item in ViewBag.curMovie)
                 {
                     <div class="movie-item">
-                        <a href="/HomePage/Details?id=@item.MovieID">
+                        <a href="/Movie/Details?id=@item.MovieID">
                             <img src="~/images/movie/poster/@item.PosterLink">
                             <div class="movie-title">
                                 <p>@item.MovieName</p>

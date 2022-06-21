@@ -95,10 +95,10 @@
             @foreach (var item in ViewBag.curMovie)
             {
                 <div class="movie-item">
-                    <a href="/HomePage/Details?id=@item.MovieID">
+                    <a href="/Movie/Details?id=@item.MovieID">
                         <img src="~/images/movie/poster/@item.PosterLink">
                         <div class="movie-title">
-                            <p>@item.MovieName</p>
+                            <p style="font-size: 18px">@item.MovieName</p>
                         </div>
                     </a>
                 </div>

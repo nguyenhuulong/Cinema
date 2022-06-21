@@ -45,7 +45,6 @@ namespace CinemaAPI.Controllers
             {
                 return NotFound();
             }
-
             return Json(mOVIE);
         }
         //MovieFuture
