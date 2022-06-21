@@ -3,12 +3,26 @@
     ViewBag.Title = "OREGON Cinema | Thông tin phim";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<style>
+    .movie-details-container {
+        width: 70%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        padding: 30px 0 0 0 !important;
+        text-align: left;
+    }
+    .movie-title p {
+        margin: 5px 0;
+        font-size: 18px !important;
+    }
+</style>
 <div class="film-profile" id="profile">
     <div class="details-container text-center">
         <div class="movie-details-container ">
-
-            <div class="Khung col-8">
+            <div class="Khung col-9">
+                <h5>THÔNG TIN PHIM</h5>
+                <div class="content-title-line mb-5"></div>
                 <div class="movie-details-title">
                     <div class="movie-poster">
                         <img src="~/images/movie/poster/@ViewBag.detail.PosterLink" class="poster">
@@ -31,7 +45,7 @@
                 <div class="contentfilm">
                     <h3>NỘI DUNG PHIM</h3>
                     <hr>
-                    <p>@ViewBag.detail.MovieDescription</p>
+                    <p style="width: 90%;">@ViewBag.detail.MovieDescription</p>
 
                     <div class="trailer">
                         <div class="embed-container">
@@ -42,33 +56,20 @@
                     </div>
                 </div>
             </div>
-            <div class="col-2">
+            <div class="col-3">
                 <h5>PHIM ĐANG CHIẾU</h5>
                 <div class="content-title-line mb-5"></div>
-                <div class="movie-item">
-                    <img src="~/images/ads/shangchiads.jpg">
-                    <a href="#"></a>
-                </div>
-                <div class="movie-title">
-                    <p>SHANG-CHI AND THE LEGEND OF THE TEN RING</p>
-                    <p>SHANG-CHI VÀ HUYỀN THOẠI THẬP LUÂN</p>
-                </div>
-                <div class="movie-item">
-                    <img src="~/images/ads/aquietplace2ads.jpg">
-                    <a href="#"></a>
-                </div>
-                <div class="movie-title">
-                    <p>A QUIET PLACE</p>
-                    <p>VÙNG ĐẤT CÂM LẶNG</p>
-                </div>
-                <div class="movie-item">
-                    <img src="~/images/ads/satnhantrongguongads.jpg">
-                    <a href="#"></a>
-                </div>
-                <div class="movie-title">
-                    <p>CANDYMAN</p>
-                    <p>SÁT NHÂN TRONG GƯƠNG</p>
-                </div>
+                @foreach (var item in ViewBag.curMovie)
+                {
+                    <div class="movie-item">
+                        <a href="/Movie/Details?id=@item.MovieID">
+                            <img src="~/images/movie/poster/@item.PosterLink">
+                            <div class="movie-title">
+                                <p>@item.MovieName</p>
+                            </div>
+                        </a>
+                    </div>
+                }
             </div>
         </div>
     </div>

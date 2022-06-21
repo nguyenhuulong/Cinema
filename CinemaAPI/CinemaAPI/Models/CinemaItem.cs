@@ -148,4 +148,9 @@ namespace CinemaAPI.Models
         [StringLength(100)]
         public string email { get; set; }
     }
+    public class Post_Category
+    {
+        [StringLength(30)]
+        public string PostCategory { get; set; }
+    }
 }

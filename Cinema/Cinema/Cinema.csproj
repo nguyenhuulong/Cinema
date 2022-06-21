@@ -120,7 +120,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BookingController.cs" />
+    <Compile Include="Controllers\CinemaController.cs" />
+    <Compile Include="Controllers\CinematicController.cs" />
     <Compile Include="Controllers\HomepageController.cs" />
+    <Compile Include="Controllers\InstructionController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -129,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Admin.css" />
+    <Content Include="Content\bootstrap-icons.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -168,6 +173,14 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Homepage\Homepage.cshtml" />
     <Content Include="Views\Movie\Details.cshtml" />
+    <Content Include="Views\Cinematic\DetailPost.cshtml" />
+    <Content Include="Views\Instruction\Instruction.cshtml" />
+    <Content Include="Views\Cinematic\Review.cshtml" />
+    <Content Include="Views\Cinematic\Blog.cshtml" />
+    <Content Include="Views\Cinematic\Sale.cshtml" />
+    <Content Include="Views\Movie\MovieCurrent.cshtml" />
+    <Content Include="Views\Movie\MovieFuture.cshtml" />
+    <Content Include="Views\Cinema\Cinema.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "OREGON Cinema | Phim đang chiếu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="list-films-current" id="current">
+    <div class="row justify-content-center">
+        <div class="list-films col-6">
+            <div class="list-films-title my-4">
+                <h5>PHIM ĐANG CHIẾU</h5>
+                <div class="content-title-line"></div>
+            </div>
+            @foreach (var item in ViewBag.current)
+            {
+                <div class="container-horizontal-line my-5"></div>
+                <div class="list-film-item row justify-content-between">
+                    <div class="col-md-2">
+                        <a href="/Movie/Details?id=@item.MovieID" class="poster-list mr-0" onclick="redirect('profile')">
+                            <img src="~/images/movie/poster/@item.PosterLink">
+                        </a>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="filmInfo" onclick="redirect('profile')">
+                            <a href="/Movie/Details?id=@item.MovieID"><h3>@item.MovieName</h3></a>
+                            <li>Thời lượng: @item.MovieLength phút</li>
+                            <li>Dành cho độ tuổi @item.Rate+ </li>
+                            <li>Thể loại: @item.Category</li>
+                            <li>Quốc gia: @item.Nation</li>
+                            <li>Đạo diễn: @item.Director</li>
+                            <li>Diễn viên: @item.Actor</li>
+                        </div>
+                        <a class="btn btn-block my-3 btn-base-color" href="/Booking/Booking?name=@item.MovieName&location=TP.%20Hà%20Nội"><i class="fa fa-film" aria-hidden="true"></i> ĐẶT VÉ</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "OREGON Cinema | Tin khuyễn mãi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-3">
+    <a href="/Cinematic/Sale"><h5 class="content-title">TIN KHUYẾN MÃI</h5></a>
+    <div class="content-title-line"></div>
+    <div class="sales">
+        @foreach (var item in ViewBag.listsale)
+        {
+            <div class="sales-container col-md-3 col-sm-6 px-0 mr-3">
+                <img src="~/images/post-thumbnail/sales/@item.PostThumbnail" alt="" class="sales-thumb text-center">
+                <div class="sales-middle">
+                    <div class="sales-title">@item.PostTitle</div>
+                    <div class="sales-text">@item.PostDescription</div>
+                    <a href="/Cinematic/DetailPost?id=@item.PostID" class="sales-button">XEM CHI TIẾT</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

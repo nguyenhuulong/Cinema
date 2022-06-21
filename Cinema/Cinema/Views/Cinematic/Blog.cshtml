@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "OREGON Cinema | Blog điện ảnh";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="cinematic-corner-1" id="corner1">
+    <div class="row">
+        <div class="col-md-7 offset-1">
+            <div class="mt-4">
+                <h5>BLOG ĐIỆN ẢNH</h5>
+                <div class="content-title-line mb-5"></div>
+            </div>
+            @foreach (var item in ViewBag.listblog)
+            {
+                <div class="post-item" onclick="redirect('post')">
+                    <a href="/Cinematic/DetailPost?id=@item.PostID" class="poster-list">
+                        <img src="~/images/post-thumbnail/blog/@item.PostThumbnail">
+                    </a>
+                    <div class="ml-5">
+                        <div class="filmInfo">
+                            <div class="review-content">
+                                <a href="/Cinematic/DetailPost?id=@item.PostID"><h4>@item.PostTitle</h4></a>
+                                <p>@item.PostDescription</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-horizontal-line my-5"></div>
+            }
+            <div class="text-center">
+                @if (ViewBag.page == "1")
+                {
+                    <a href="/Cinematic/Blog?page=1" class="btn-primary selected_page p-2">&nbsp;1&nbsp;</a>
+                    <a href="/Cinematic/Blog?page=2" class="btn-secondary ml-2 p-2">&nbsp;2&nbsp;</a>
+                }
+                @if (ViewBag.page == "2")
+                {
+                    <a href="/Cinematic/Blog?page=1" class="btn-secondary p-2">&nbsp;1&nbsp;</a>
+                    <a href="/Cinematic/Blog?page=2" id="select2" class="btn-primary selected_page ml-2 p-2">&nbsp;2&nbsp;</a>
+                }
+            </div>
+        </div>
+        <div class="col-md-2 offset-1 mt-4">
+            <h5>PHIM ĐANG CHIẾU</h5>
+            <div class="content-title-line mb-5"></div>
+            @foreach (var item in ViewBag.curMovie)
+            {
+                <div class="movie-item">
+                    <a href="/Movie/Details?id=@item.MovieID">
+                        <img src="~/images/movie/poster/@item.PosterLink">
+                        <div class="movie-title">
+                            <p style="font-size: 18px">@item.MovieName</p>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

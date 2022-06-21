@@ -24,6 +24,7 @@ namespace CinemaAPI.Controllers
         }
 
         // GET: api/Movies/5
+        [HttpGet]
         [ResponseType(typeof(MOVIE))]
         public async Task<IHttpActionResult> Details(string id)
         {
@@ -32,7 +33,6 @@ namespace CinemaAPI.Controllers
             {
                 return NotFound();
             }
-
             return Json(mOVIE);
         }
         [HttpGet]
@@ -45,7 +45,6 @@ namespace CinemaAPI.Controllers
             {
                 return NotFound();
             }
-
             return Json(mOVIE);
         }
         //MovieFuture
