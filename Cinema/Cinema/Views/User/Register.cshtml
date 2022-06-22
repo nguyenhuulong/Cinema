@@ -1,0 +1,179 @@
+﻿
+@{
+    ViewBag.Title = "Đăng nhập";
+
+}
+<div class="login-wrap" id="auth">
+
+    <div class="login-html">
+        <button type="button" class="close" style="position:absolute;right:5px;top:0;font-size:40px;color:white;width:40px;" data-dismiss="modal" aria-label="Close" onclick="reload()">x</button>
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Đăng nhập</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab" id="signup1">Đăng ký</label>
+        <div class="login-form">
+            @if (ViewBag.index == "1")
+            {
+                <div class="sign-in-htm">
+                    <form action="" method="post">
+                        <div class="group">
+                            <label for="user" class="label">Tài khoản</label>
+                            <input id="user" name="user" type="text" class="input" placeholder="">
+                            <input type="hidden" id="hidID" value="0" />
+                        </div>
+                        <div class="group">
+                            <label for="pass" class="label">Mật khẩu</label>
+                            <input id="pass" name="pass" type="password" class="input" data-type="password" placeholder="">
+                        </div>
+                        <div class="group">
+                            <input id="check" name="checkbox" type="checkbox" class="check" checked>
+                            <label for="check"><span class="icon"></span> Nhớ mật khẩu của tôi</label>
+                        </div>
+                        <div class="group">
+                            <input type="button" class="button" value="Sign In" onclick="login()">
+                        </div>
+
+                        <div class="group text-danger text-bold" id="notif_signin">
+
+                        </div>
+                        <div class="group text-danger text-bold" id="notif_signin_success">
+
+                        </div>
+                        <div class="hr"></div>
+                        <div class="foot-lnk">
+                            <a href="#"><label for="tab-2">Quên mật khẩu?</label></a>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="sign-up-htm">
+
+                    <div class="group">
+                        <label for="user" class="label">Tài khoản</label>
+                        <input id="user" name="user" type="text" class="input" placeholder="">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Mật khẩu</label>
+                        <input id="pass" name="pass" type="password" class="input" data-type="password" placeholder="">
+                    </div>
+                    <div class="group">
+                        <label for="repass" class="label">Xác nhận mật khẩu</label>
+                        <input id="repass" name="repass" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <label for="email" class="label">Email</label>
+                        <input id="email" name="email" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <input type="submit" class="button" onclick="signup()" value="Sign Up" id="signupbtn">
+                    </div>
+                    <div class="group text-danger text-bold" id="notif_signup">
+
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <a href="#"><label for="tab-1">Đã có tài khoản?</label></a>
+                    </div>
+
+
+                </div>
+            }
+            @if (ViewBag.index == "2")
+            {
+                <script>
+                    $("#signup1").trigger('click');
+                </script>
+                <div class="sign-up-htm">
+
+                    <div class="group">
+                        <label for="user" class="label">Tài khoản</label>
+                        <input id="user" name="user" type="text" class="input" placeholder="">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Mật khẩu</label>
+                        <input id="pass" name="pass" type="password" class="input" data-type="password" placeholder="">
+                    </div>
+                    <div class="group">
+                        <label for="repass" class="label">Xác nhận mật khẩu</label>
+                        <input id="repass" name="repass" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <label for="email" class="label">Email</label>
+                        <input id="email" name="email" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <input type="submit" class="button" onclick="signup()" value="Sign Up" id="signupbtn">
+                    </div>
+                    <div class="group text-danger text-bold" id="notif_signup">
+
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <a for="tab-1">Đã có tài khoản?</a>
+                    </div>
+                </div>
+                <div class="sign-in-htm">
+
+                    <div class="group">
+                        <label for="user" class="label">Tài khoản</label>
+                        <input id="user" name="user" type="text" class="input" placeholder="">
+                        <input type="hidden" id="hidID" value="0" />
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Mật khẩu</label>
+                        <input id="pass" name="pass" type="password" class="input" data-type="password" placeholder="">
+                    </div>
+                    <div class="group">
+                        <input id="check" name="checkbox" type="checkbox" class="check" checked>
+                        <label for="check"><span class="icon"></span> Nhớ mật khẩu của tôi</label>
+                    </div>
+                    <div class="group">
+                        <input type="submit" class="button" value="Sign In" onclick="login()">
+                    </div>
+                    <div class="group text-danger text-bold" id="notif_signin">
+
+                    </div>
+                    <div class="group text-danger text-bold" id="notif_signin_success">
+
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <a href="#forgot">Quên mật khẩu?</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script>
+    function reload() {
+        this.location.reload();
+    }
+    function login() {
+        var tk = $("[name='user']").val();
+        var mk = $("[name='pass']").val();
+        $.get("/User/CheckLogin", { name: tk, password: mk }, function (data) {
+            if (data.isRedirect != true) {
+                $('#notif_signin_success').html(data.isRedirect);
+            }
+            else {
+                window.location.href = data.redirectUrl;
+            }
+        });
+    }
+    function signup() {
+        var tk = $("[name='user']").val();
+        var pass = $("[name='pass']").val();
+        var repass = $("[name='repass']").val();
+        var email = $("[name='email']").val();
+
+        $.get("/User/CheckSignup", { name: tk,pass:pass, repass:repass, email:email}, function (data) {
+            if (data.data == 1) {
+                $('#notif_signup').html(data.msg);
+                $('#signupbtn').css.display="none";
+            }
+            else {
+                $('#notif_signup').html(data.msg);
+            }
+        });
+    }
+</script>
+<link rel="stylesheet" href="~/Content/HomePage.css">

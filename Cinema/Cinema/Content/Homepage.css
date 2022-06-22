@@ -1706,7 +1706,7 @@ strong {
 /* start user profile */
 
 .user-profile {
-    background-image: url("assets/images/user_background.png");
+    background-image: url("~/public/user_background.png");
     background-repeat: no-repeat;
     background-position: 0% 0%;
     background-size: cover;

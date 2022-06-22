@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "OREGON Cinema | Thông tin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .user-profile {
+        background-image: url("../public/user_background.png") !important;
+    }
+</style>
+<div class="user-profile">
+    <div class="container user-box d-flex">
+        <div class="user-account-info">
+            <div class="d-flex flex-column">
+                <div class="d-flex flex-row">
+                    <h5>THÔNG TIN TÀI KHOẢN</h5>
+                    <button class="btn btn-dark btn-sm ml-3"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chỉnh sửa</button>
+                </div>
+                <div class="content-title-line"></div>
+            </div>
+
+            <div class="user-account">
+
+                <h5>Username: <span>@ViewBag.user.Username</span></h5>
+                <h5>Email: <span>@ViewBag.user.email</span></h5>
+            </div>
+
+        </div>
+        <div class="user-ticket-info">
+            <h5>LỊCH SỬ ĐẶT VÉ</h5>
+            <div class="content-title-line"></div>
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Số hóa đơn</th>
+                        <th scope="col">Tên phim</th>
+                        <th scope="col">Ngày thanh toán</th>
+                        <th scope="col">Giờ chiếu</th>
+                        <th scope="col">Ghế ngồi</th>
+                        <th scope="col">Loại vé</th>
+                        <th scope="col">Tổng số tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var bill in ViewBag.bill)
+                    {
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">@bill.BillID</th>
+                            <th scope="col">@bill.data.MovieName</th>
+                            <th scope="col">@bill.PayDay</th>
+                            <th scope="col">@bill.data.ShowTime</th>
+
+                            <th scope="col">
+                                @foreach (var item in bill.TicketType)
+                                {
+                                    <p>@item.SeatName</p>
+
+                                }
+                            </th>
+                            <th scope="col">
+                                @if (bill.Service != null)
+                                {
+                                    foreach (var item in bill.Service)
+                                    {
+                                        <p>@item.ServiceName - @item.ServicePrice</p>
+                                    }
+                                }
+
+                            </th>
+                            <th scope="col"></th>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
