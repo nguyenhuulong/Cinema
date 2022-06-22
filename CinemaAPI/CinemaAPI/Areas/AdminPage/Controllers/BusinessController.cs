@@ -10,6 +10,8 @@ using System.Web.Http.Description;
 using CinemaAPI.Models;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace CinemaAPI.Areas.AdminPage.Controllers
 {
@@ -171,14 +173,16 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
 
         [HttpPut]
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutService(string id, SERVICE sERVICE)
+        public async Task<IHttpActionResult> PutService(string id, JObject sERVICE)
         {
+
+            SERVICE result = JsonConvert.DeserializeObject<SERVICE>(sERVICE.ToString());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != sERVICE.ServiceID)
+            if (id != result.ServiceID)
             {
                 return BadRequest();
             }
