@@ -10,6 +10,8 @@ using System.Web.Http.Description;
 using CinemaAPI.Models;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace CinemaAPI.Areas.AdminPage.Controllers
 {
@@ -67,24 +69,56 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
 
         [HttpPost]
         [ResponseType(typeof(CINEMA))]
-        public async Task<IHttpActionResult> AddDiscount(CINEMA cINEMA)
+        public async Task<IHttpActionResult> AddCinema(JObject jObject)
         {
+            CINEMA result = JsonConvert.DeserializeObject<CINEMA>(jObject.ToString());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.CINEMAs.Add(cINEMA);
+            db.CINEMAs.Add(result);
 
-            await db.SaveChangesAsync();
+            try
+            {
+                await db.SaveChangesAsync();
+            }
 
-            return CreatedAtRoute("DefaultApi", new { id = cINEMA.CinemaID }, cINEMA);
+            catch (DbUpdateConcurrencyException)
+            {
+
+                if (CinemaExists(result.CinemaID))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+
+            }
+            return StatusCode(HttpStatusCode.NoContent);
         }
+
+        [HttpGet]
+        [ResponseType(typeof(CINEMA))]
+        public async Task<IHttpActionResult> FindCinema(string id)
+        {
+            var cinema = db.CINEMAs.FindAsync(id);
+            await cinema;
+            if (cinema == null)
+            {
+                return NotFound();
+            }
+            return Json(cinema);
+        }
+
 
         [HttpPut]
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutCinema(string id, CINEMA cINEMA)
+        public async Task<IHttpActionResult> EditCinema(string id, JObject jObject)
         {
+            CINEMA cINEMA = JsonConvert.DeserializeObject<CINEMA>(jObject.ToString());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -103,7 +137,7 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!Cinemaxists(id))
+                if (!CinemaExists(id))
                 {
                     return NotFound();
                 }
@@ -132,10 +166,239 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
             return Ok(cINEMA);
         }
 
+        [HttpGet]
+        [ResponseType(typeof(String))]
+        public async Task<IHttpActionResult> GetMaxLocationID()
+        {
+            var max = db.Database.SqlQuery<String>("exec GetMaxLocationId");
+            await max.ToListAsync();
+            if (max == null)
+            {
+                return NotFound();
+            }
+            return Json(max);
+        }
 
-        private bool Cinemaxists(string id)
+        [HttpPost]
+        [ResponseType(typeof(CINEMA_LOCATION))]
+        public async Task<IHttpActionResult> AddLocation(JObject jObject)
+        {
+            CINEMA_LOCATION result = JsonConvert.DeserializeObject<CINEMA_LOCATION>(jObject.ToString());
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.CINEMA_LOCATION.Add(result);
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+
+            catch (DbUpdateConcurrencyException)
+            {
+
+                if (LocationExists(result.LocationID))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+
+            }
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [HttpGet]
+        [ResponseType(typeof(CINEMA_LOCATION))]
+        public async Task<IHttpActionResult> FindLocation(string id)
+        {
+            var location = db.CINEMA_LOCATION.FindAsync(id);
+            await location;
+            if (location == null)
+            {
+                return NotFound();
+            }
+            return Json(location);
+        }
+
+        [HttpPut]
+        [ResponseType(typeof(void))]
+        public async Task<IHttpActionResult> EditLocation(string id, JObject jObject)
+        {
+            CINEMA_LOCATION lOCATION = JsonConvert.DeserializeObject<CINEMA_LOCATION>(jObject.ToString());
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != lOCATION.LocationID)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(lOCATION).State = EntityState.Modified;
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!LocationExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [HttpDelete]
+        [ResponseType(typeof(CINEMA_LOCATION))]
+        public async Task<IHttpActionResult> DeleteLocation(string id)
+        {
+            CINEMA_LOCATION lOCATION = await db.CINEMA_LOCATION.FindAsync(id);
+            if (lOCATION == null)
+            {
+                return NotFound();
+            }
+
+            db.CINEMA_LOCATION.Remove(lOCATION);
+            await db.SaveChangesAsync();
+
+            return Ok(lOCATION);
+        }
+
+        [HttpGet]
+        [ResponseType(typeof(String))]
+        public async Task<IHttpActionResult> GetMaxRoomID()
+        {
+            var max = db.Database.SqlQuery<String>("exec GetMaxRoomId");
+            await max.ToListAsync();
+            if (max == null)
+            {
+                return NotFound();
+            }
+            return Json(max);
+        }
+
+        [HttpPost]
+        [ResponseType(typeof(ROOM))]
+        public async Task<IHttpActionResult> AddRoom(JObject jObject)
+        {
+            ROOM result = JsonConvert.DeserializeObject<ROOM>(jObject.ToString());
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.ROOMs.Add(result);
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+
+            catch (DbUpdateConcurrencyException)
+            {
+
+                if (LocationExists(result.RoomID))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+
+            }
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [HttpGet]
+        [ResponseType(typeof(ROOM))]
+        public async Task<IHttpActionResult> FindRoom(string id)
+        {
+            var room = db.ROOMs.FindAsync(id);
+            await room;
+            if (room == null)
+            {
+                return NotFound();
+            }
+            return Json(room);
+        }
+
+        [HttpPut]
+        [ResponseType(typeof(void))]
+        public async Task<IHttpActionResult> EditRoom(string id, JObject jObject)
+        {
+            ROOM rOOM = JsonConvert.DeserializeObject<ROOM>(jObject.ToString());
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != rOOM.RoomID)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(rOOM).State = EntityState.Modified;
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RoomExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [HttpDelete]
+        [ResponseType(typeof(ROOM))]
+        public async Task<IHttpActionResult> DeleteRoom(string id)
+        {
+            ROOM rOOM = await db.ROOMs.FindAsync(id);
+            if (rOOM == null)
+            {
+                return NotFound();
+            }
+
+            db.ROOMs.Remove(rOOM);
+            await db.SaveChangesAsync();
+
+            return Ok(rOOM);
+        }
+        private bool CinemaExists(string id)
         {
             return db.CINEMAs.Count(e => e.CinemaID == id) > 0;
+        }
+
+        private bool LocationExists(string id)
+        {
+            return db.CINEMA_LOCATION.Count(e => e.LocationID == id) > 0;
+        }
+        private bool RoomExists(string id)
+        {
+            return db.ROOMs.Count(e => e.RoomID == id) > 0;
         }
     }
 }
