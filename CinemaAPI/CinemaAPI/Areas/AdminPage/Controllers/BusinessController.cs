@@ -10,6 +10,8 @@ using System.Web.Http.Description;
 using CinemaAPI.Models;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace CinemaAPI.Areas.AdminPage.Controllers
 {
@@ -77,8 +79,9 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
 
         [HttpPut]
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutTICKET(string id, TICKET tICKET)
+        public async Task<IHttpActionResult> EditTICKET(string id, JObject result)
         {
+            TICKET tICKET = JsonConvert.DeserializeObject<TICKET>(result.ToString());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -128,14 +131,15 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
 
         [HttpPost]
         [ResponseType(typeof(SERVICE))]
-        public async Task<IHttpActionResult> PostSERVICE(SERVICE sERVICE)
+        public async Task<IHttpActionResult> AddSERVICE(JObject jObject)
         {
+            SERVICE result = JsonConvert.DeserializeObject<SERVICE>(jObject.ToString());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.SERVICEs.Add(sERVICE);
+            db.SERVICEs.Add(result);
 
             try
             {
@@ -143,7 +147,7 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
             }
             catch (DbUpdateException)
             {
-                if (TICKETExists(sERVICE.ServiceID))
+                if (SERVICEExists(result.ServiceID))
                 {
                     return Conflict();
                 }
@@ -153,7 +157,7 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = sERVICE.ServiceID }, sERVICE);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         [HttpGet]
@@ -171,14 +175,16 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
 
         [HttpPut]
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutService(string id, SERVICE sERVICE)
+        public async Task<IHttpActionResult> EditService(string id, JObject sERVICE)
         {
+
+            SERVICE result = JsonConvert.DeserializeObject<SERVICE>(sERVICE.ToString());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != sERVICE.ServiceID)
+            if (id != result.ServiceID)
             {
                 return BadRequest();
             }
@@ -191,7 +197,7 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SERVICExists(id))
+                if (!SERVICEExists(id))
                 {
                     return NotFound();
                 }
@@ -221,9 +227,10 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
         }
 
         [HttpPost]
-        [ResponseType(typeof(SERVICE))]
-        public async Task<IHttpActionResult> AddDiscount(DISCOUNT_CODE dISCOUNT)
+        [ResponseType(typeof(DISCOUNT_CODE))]
+        public async Task<IHttpActionResult> AddDiscount(JObject jObject)
         {
+            DISCOUNT_CODE dISCOUNT = JsonConvert.DeserializeObject<DISCOUNT_CODE>(jObject.ToString());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -237,7 +244,7 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
             }
             catch (DbUpdateException)
             {
-                if (Discountxists(dISCOUNT.CodeID))
+                if (DiscountExists(dISCOUNT.CodeID))
                 {
                     return Conflict();
                 }
@@ -247,7 +254,7 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = dISCOUNT.CodeID }, dISCOUNT);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         [HttpGet]
@@ -265,8 +272,9 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
 
         [HttpPut]
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutDiscount(string id, DISCOUNT_CODE dISCOUNT)
+        public async Task<IHttpActionResult> EditDiscount(string id, JObject jObject)
         {
+            DISCOUNT_CODE dISCOUNT = JsonConvert.DeserializeObject<DISCOUNT_CODE>(jObject.ToString());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -285,7 +293,7 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!Discountxists(id))
+                if (!DiscountExists(id))
                 {
                     return NotFound();
                 }
@@ -299,7 +307,7 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
         }
 
         [HttpDelete]
-        [ResponseType(typeof(SERVICE))]
+        [ResponseType(typeof(DISCOUNT_CODE))]
         public async Task<IHttpActionResult> DeleteDiscount(string id)
         {
             DISCOUNT_CODE dISCOUNT = await db.DISCOUNT_CODE.FindAsync(id);
@@ -327,14 +335,15 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
             return db.TICKETs.Count(e => e.TicketID == id) > 0;
         }
 
-        private bool SERVICExists(string id)
+        private bool SERVICEExists(string id)
         {
             return db.SERVICEs.Count(e => e.ServiceID == id) > 0;
         }
 
-        private bool Discountxists(string id)
+        private bool DiscountExists(string id)
         {
             return db.DISCOUNT_CODE.Count(e => e.CodeID == id) > 0;
         }
     }
 }
+
