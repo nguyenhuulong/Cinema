@@ -5,7 +5,8 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -19,13 +20,24 @@ namespace CinemaAPI.Controllers
     public class UserAPIController : ApiController
     {
         private CinemaDB db = new CinemaDB();
-
+        public static string GetMD5(string str)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] fromData = Encoding.UTF8.GetBytes(str);
+            byte[] targetData = md5.ComputeHash(fromData);
+            string byte2String = null;
+            for (int i = 0; i < targetData.Length; i++)
+            {
+                byte2String += targetData[i].ToString("x2");
+            }
+            return byte2String;
+        }
         //CheckID
         [System.Web.Http.HttpGet]
-        [ResponseType(typeof(String))]
+        [ResponseType(typeof(User_ID))]
         public async Task<IHttpActionResult> CheckID()
         {
-            var result = db.Database.SqlQuery<String>("exec check_ID");
+            var result = db.Database.SqlQuery<User_ID>("exec check_ID");
             await result.ToListAsync();
             if (result == null)
             {
@@ -69,7 +81,8 @@ namespace CinemaAPI.Controllers
         [Microsoft.AspNetCore.Mvc.Route("{Username}/{Password}")]
         public async Task<IHttpActionResult> CheckLogin([FromRoute] string Username, [FromRoute] string Password)
         {
-            var result = db.USER_ACCOUNT.Where(s => s.Username.Equals(Username) && s.UserPassword.Equals(Password));
+            string _password = GetMD5(Password);
+            var result = db.USER_ACCOUNT.Where(s => s.Username.Equals(Username) && s.UserPassword.Equals(_password));
             await result.ToListAsync();
             if (result == null)
             {

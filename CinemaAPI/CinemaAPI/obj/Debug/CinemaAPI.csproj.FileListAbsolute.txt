@@ -627,3 +627,4 @@ F:\Kì 2 Năm 4\T5 Công nghệ lập trình tích hợp\Documents\Cinema\
 F:\Kì 2 Năm 4\T5 Công nghệ lập trình tích hợp\Documents\Cinema\Cinema\CinemaAPI\CinemaAPI\obj\Debug\CinemaAPI.csproj.CopyComplete
 F:\Kì 2 Năm 4\T5 Công nghệ lập trình tích hợp\Documents\Cinema\Cinema\CinemaAPI\CinemaAPI\obj\Debug\CinemaAPI.dll
 F:\Kì 2 Năm 4\T5 Công nghệ lập trình tích hợp\Documents\Cinema\Cinema\CinemaAPI\CinemaAPI\obj\Debug\CinemaAPI.pdb
+D:\Documents\Cinema\Cinema\CinemaAPI\CinemaAPI\obj\Debug\CinemaAPI.csproj.AssemblyReference.cache
