@@ -250,6 +250,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\AdminPage\AdminPageAreaRegistration.cs" />
     <Compile Include="Areas\AdminPage\Controllers\AdminController.cs" />
+    <Compile Include="Areas\AdminPage\Controllers\BusinessController.cs" />
+    <Compile Include="Areas\AdminPage\Controllers\FacilityController.cs" />
+    <Compile Include="Areas\AdminPage\Controllers\HumanResourceController.cs" />
+    <Compile Include="Areas\AdminPage\Controllers\LoginController.cs" />
+    <Compile Include="Areas\AdminPage\Controllers\MediaController.cs" />
+    <Compile Include="Areas\AdminPage\Controllers\MovieAdminController.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -369,6 +375,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\AdminPage\Data\" />
     <Folder Include="Areas\AdminPage\Views\Admin\" />
+    <Folder Include="Areas\AdminPage\Views\Login\" />
     <Folder Include="Areas\AdminPage\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
