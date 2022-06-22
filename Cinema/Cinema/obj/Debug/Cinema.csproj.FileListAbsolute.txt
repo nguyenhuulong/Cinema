@@ -235,7 +235,6 @@ E:\desktop\HKII năm 4\5. Công nghệ lập trình tích hợp\BTL\Cinema\Cinem
 E:\desktop\HKII năm 4\5. Công nghệ lập trình tích hợp\BTL\Cinema\Cinema\Cinema\obj\Debug\Cinema.csproj.CopyComplete
 E:\desktop\HKII năm 4\5. Công nghệ lập trình tích hợp\BTL\Cinema\Cinema\Cinema\obj\Debug\Cinema.dll
 E:\desktop\HKII năm 4\5. Công nghệ lập trình tích hợp\BTL\Cinema\Cinema\Cinema\obj\Debug\Cinema.pdb
-F:\Kì 2 Năm 4\T5 Công nghệ lập trình tích hợp\Documents\Cinema\Cinema\Cinema\Cinema\obj\Debug\Cinema.csprojAssemblyReference.cache
 F:\Kì 2 Năm 4\T5 Công nghệ lập trình tích hợp\Documents\Cinema\Cinema\Cinema\Cinema\obj\Debug\Cinema.csproj.CoreCompileInputs.cache
 F:\Kì 2 Năm 4\T5 Công nghệ lập trình tích hợp\Documents\Cinema\Cinema\Cinema\Cinema\obj\Debug\Cinema.dll
 F:\Kì 2 Năm 4\T5 Công nghệ lập trình tích hợp\Documents\Cinema\Cinema\Cinema\Cinema\obj\Debug\Cinema.pdb
