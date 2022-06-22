@@ -44,27 +44,7 @@ namespace Cinema.Areas.Admin.Controllers
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
 
-                
-                
-                
-
-                
-
-                //responseMessage4.Wait();
-                //responseMessage5.Wait();
-                //responseMessage6.Wait();
-                //responseMessage7.Wait();
-                //responseMessage8.Wait();
-                //responseMessage9.Wait();
-                //responseMessage10.Wait();
-                //responseMessage11.Wait();
-                //responseMessage12.Wait();
-                //responseMessage13.Wait();
-                //responseMessage14.Wait();
-                //responseMessage15.Wait();
-                //responseMessage16.Wait();
-
-                var responseMessage = client.GetAsync("GetST"); // api  GET_CinemaLocation
+                var responseMessage = client.GetAsync("GetLOCATIONs"); // api  GET_CinemaLocation
                 responseMessage.Wait();
                 var result = responseMessage.Result;
                 if (result.IsSuccessStatusCode)
@@ -120,7 +100,7 @@ namespace Cinema.Areas.Admin.Controllers
                     {
                         admins.Add(o);
                     }
-                    ViewBag.admins = admins;
+                    ViewBag.admins = admins.Count();
                 }
 
                 responseMessage = client.GetAsync("GetDepartment");
@@ -137,7 +117,7 @@ namespace Cinema.Areas.Admin.Controllers
                     ViewBag.departments = departments.Count;
                 }
 
-                responseMessage = client.GetAsync("GetPosts");
+                responseMessage = client.GetAsync("GetPost");
                 result = responseMessage.Result;
                 if (result.IsSuccessStatusCode)
                 {
@@ -246,11 +226,11 @@ namespace Cinema.Areas.Admin.Controllers
                     {
                         phim.Add(o);
                     }
-                    ViewBag.phim = phim;
+                    ViewBag.phim = phim.Count;
                 }
 
                 //BILL INFO chua biet api
-                responseMessage = client.GetAsync("ST about BILL");   
+                responseMessage = client.GetAsync("GetPayment");   
                 result = responseMessage.Result;
                 if (result.IsSuccessStatusCode)
                 {
@@ -261,10 +241,10 @@ namespace Cinema.Areas.Admin.Controllers
                     {
                         payment.Add(o);
                     }
-                    ViewBag.payment = payment.Count;
+                    ViewBag.payment = payment;
                 }
 
-                responseMessage = client.GetAsync("GetTicketType");
+                responseMessage = client.GetAsync("GetTicketTypes");
                 result = responseMessage.Result;
                 if (result.IsSuccessStatusCode)
                 {
@@ -278,7 +258,7 @@ namespace Cinema.Areas.Admin.Controllers
                     ViewBag.ticketType = ticketType.Count;
                 }
 
-                responseMessage = client.GetAsync("GetService");
+                responseMessage = client.GetAsync("GetServices");
                 result = responseMessage.Result;
                 if (result.IsSuccessStatusCode)
                 {

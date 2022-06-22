@@ -320,7 +320,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".vs\ProjectSettings.json" />
+    <Content Include=".vs\slnx.sqlite" />
+    <Content Include=".vs\VSWorkspaceState.json" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="bin\CinemaAPI.dll" />
+    <Content Include="bin\CinemaAPI.pdb" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -372,11 +377,14 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include=".vs\CinemaAPI\v16\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\AdminPage\Data\" />
     <Folder Include="Areas\AdminPage\Views\Admin\" />
     <Folder Include="Areas\AdminPage\Views\Login\" />
     <Folder Include="Areas\AdminPage\Views\Shared\" />
+    <Folder Include="aspnet_client\system_web\2_0_50727\" />
+    <Folder Include="aspnet_client\system_web\4_0_30319\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

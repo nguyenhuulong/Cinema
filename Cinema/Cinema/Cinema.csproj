@@ -120,6 +120,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BusinessController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\CinemaController.cs" />
     <Compile Include="Controllers\CinematicController.cs" />
@@ -132,6 +136,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\assets\bootstrap\bootstrap.min.js" />
+    <Content Include="Areas\Admin\assets\css\admin.css" />
+    <Content Include="Areas\Admin\assets\css\animate.min.css" />
+    <Content Include="Areas\Admin\assets\css\fontawesome-all.min.css" />
+    <Content Include="Areas\Admin\assets\css\style.css" />
+    <Content Include="Areas\Admin\assets\images\auth-bg.jpg" />
+    <Content Include="Areas\Admin\assets\images\bg.jpg" />
+    <Content Include="Areas\Admin\assets\js\vendor-all.min.js" />
     <Content Include="Content\Admin.css" />
     <Content Include="Content\bootstrap-icons.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -344,6 +356,37 @@
     <Content Include="public\user_background.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\Admin\Homepage.cshtml" />
+    <Content Include="Areas\Admin\Views\Business\AddDiscountView.cshtml" />
+    <Content Include="Areas\Admin\Views\Business\AddServiceView.cshtml" />
+    <Content Include="Areas\Admin\Views\Business\AddTicketTypeView.cshtml" />
+    <Content Include="Areas\Admin\Views\Business\Business.cshtml" />
+    <Content Include="Areas\Admin\Views\Business\EditDiscountView.cshtml" />
+    <Content Include="Areas\Admin\Views\Business\EditServiceView.cshtml" />
+    <Content Include="Areas\Admin\Views\Business\EditTicketTypeView.cshtml" />
+    <Content Include="Areas\Admin\Views\Facility\AddCinemaView.cshtml" />
+    <Content Include="Areas\Admin\Views\Facility\AddLocationView.cshtml" />
+    <Content Include="Areas\Admin\Views\Facility\AddRoomView.cshtml" />
+    <Content Include="Areas\Admin\Views\Facility\EditCinemaView.cshtml" />
+    <Content Include="Areas\Admin\Views\Facility\EditLocationView.cshtml" />
+    <Content Include="Areas\Admin\Views\Facility\EditRoomView.cshtml" />
+    <Content Include="Areas\Admin\Views\Facility\Facility.cshtml" />
+    <Content Include="Areas\Admin\Views\HumanResource\AddAdminView.cshtml" />
+    <Content Include="Areas\Admin\Views\HumanResource\AddDepartmentView.cshtml" />
+    <Content Include="Areas\Admin\Views\HumanResource\EditAdminView.cshtml" />
+    <Content Include="Areas\Admin\Views\HumanResource\EditDepartmentView.cshtml" />
+    <Content Include="Areas\Admin\Views\HumanResource\HumanResource.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Media\AddPostView.cshtml" />
+    <Content Include="Areas\Admin\Views\Media\EditPostView.cshtml" />
+    <Content Include="Areas\Admin\Views\Media\Media.cshtml" />
+    <Content Include="Areas\Admin\Views\MovieAdmin\AddMovieView.cshtml" />
+    <Content Include="Areas\Admin\Views\MovieAdmin\EditMovieView.cshtml" />
+    <Content Include="Areas\Admin\Views\MovieAdmin\MovieAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\Movie\Movie.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -379,6 +422,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
