@@ -229,7 +229,6 @@ namespace Cinema.Areas.Admin.Controllers
                     ViewBag.phim = phim.Count;
                 }
 
-                //BILL INFO chua biet api
                 responseMessage = client.GetAsync("GetPayment");   
                 result = responseMessage.Result;
                 if (result.IsSuccessStatusCode)
