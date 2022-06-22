@@ -18,5 +18,47 @@ namespace CinemaAPI.Controllers
     {
         private CinemaDB db = new CinemaDB();
 
+        [HttpGet]
+        [ResponseType(typeof(MOVIE))]
+        public async Task<IHttpActionResult> GetCurrentFilm()
+        {
+            var mOVIE = db.Database.SqlQuery<MOVIE>("exec GetCurrentFilm");
+            await mOVIE.ToListAsync();
+            if (mOVIE == null)
+            {
+                return NotFound();
+            }
+            return Json(mOVIE);
+        }
+        public IQueryable<CINEMA_LOCATION> GetLC()
+        {
+            return db.CINEMA_LOCATION;
+        }
+
+        [HttpGet]
+        [ResponseType(typeof(CinemaItem1))]
+        public async Task<IHttpActionResult> GetListCinemaFromFilm(string name, DateTime date)
+        {
+            var cinema = db.Database.SqlQuery<CinemaItem1>($"exec GetListCinemaFromFilm N'{name}', N'{date}'");
+            await cinema.ToListAsync();
+            if (cinema == null)
+            {
+                return NotFound();
+            }
+            return Json(cinema);
+        }
+
+        [HttpGet]
+        [ResponseType(typeof(CinemaItem1))]
+        public async Task<IHttpActionResult> GetListCinemaFromFilmAndLocation(string name, DateTime date, string location)
+        {
+            var cinema = db.Database.SqlQuery<CinemaItem1>($"exec GetListCinemaFromFilmAndLocation N'{name}', N'{date}', N'{location}'");
+            await cinema.ToListAsync();
+            if (cinema == null)
+            {
+                return NotFound();
+            }
+            return Json(cinema);
+        }
     }
 }

@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "Kết quả tìm kiếm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 ml-0  justify-content-start pl-0 w-100">
+
+        </div>
+        <div class="col-md-8">
+            <!-- 2. phan search -->
+
+            <div class=" search-result mb-5 mt-2">
+                <h5>KẾT QUẢ TÌM KIẾM</h5>
+                <div class="content-title-line" style="width:174px;"></div>
+                <p><strong>Từ khóa : </strong>" @ViewBag.keyword "</p>
+
+                <div class="d-flex flex-row">
+                    <div class="form-group1">
+                        <label for="sel1" class="mt-2">Lọc theo quốc gia:</label>
+
+                        <select class="select-box form-control font-weight-bold float-right ml-5" onchange="location.href=this.value">
+                            @if (ViewBag.checknation == "all")
+                            {
+                                <option selected value="">Tất cả</option>
+                            }
+                            else
+                            {
+                                <option value="@Url.Action("Search","Search", new { nation = "all",category=ViewBag.checkcategory,page="1" })">Tất cả</option>
+                            }
+                            @foreach (var item in ViewBag.nation)
+                            {
+                                if (item.Nation == ViewBag.checknation)
+                                {
+                                    <option selected value="@Url.Action("Search","Search", new {category=ViewBag.checkcategory, nation = item.Nation ,page="1" })">@item.Nation</option>
+                                    continue;
+                                }
+                                <option value="@Url.Action("Search","Search", new { category=ViewBag.checkcategory, nation = item.Nation,page="1" })">@item.Nation</option>
+                            }
+
+                        </select>
+                    </div>
+                    <div class="form-group1">
+                        <label for="sel1" class="mt-2 ml-5">Lọc theo thể loại:</label>
+
+                        <select class="select-box form-control font-weight-bold float-right ml-5" onchange="location.href=this.value">
+                            @if (ViewBag.checkcategory == "all")
+                            {
+                                <option selected value="">Tất cả</option>
+                            }
+                            else
+                            {
+                                <option value="@Url.Action("Search","Search", new { nation = ViewBag.checknation,category="all",page="1" })">Tất cả</option>
+
+                            }
+                            @foreach (var item in ViewBag.category)
+                            {
+                                if (item.Category == ViewBag.checkcategory)
+                                {
+                                    <option selected value="@Url.Action("Search","Search", new { nation = ViewBag.checknation,category=item.Category, page="1" })">@item.Category</option>
+                                    continue;
+                                }
+                                <option value="@Url.Action("Search","Search", new { nation = ViewBag.checknation,category=item.Category,page="1" })">@item.Category</option>
+                            }
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            @if (ViewBag.result.Count == 0)
+            {
+                <p class="text-danger font-weight-bold text-center ">Không tìm thấy phim nào chứa từ khóa bạn vừa nhập !!!!!</p>
+            }
+
+            @foreach (var item in ViewBag.result)
+            {
+
+                <div class="list-film-item mt-5" style="width: 70%; margin: 0 auto; display: flex; justify-content: space-between;">
+                    <a href="#" class="poster-list mr-5" onclick="redirect('profile')">
+                        <img src="~/images/movie/poster/@item.PosterLink">
+                    </a>
+                    <div class="ml-5">
+                        <div class="filmInfo" onclick="redirect('profile')">
+                            <a href="#"><h3>@item.MovieName</h3></a>
+                            <li>@item.MovieLength mins</li>
+                            <li>Dành cho độ tuổi @item.Rate+</li>
+                            <li>Thể loại: @item.Category</li>
+                            <li>Đạo diễn: @item.Director</li>
+                            <li>Diễn viên: @item.Actor</li>
+                            <li>Quốc gia: @item.Nation</li>
+                        </div>
+                        @if (item.MovieStatus == 2)
+                        {
+                            <button class="btn btn-block bg-dark my-3 col-md-4 offset-4" onclick="redirect('booking')"><i class="fa fa-film" aria-hidden="true"></i>  <span class="text-success font-weight-bold">Đang chiếu</span></button>
+                        }
+                        @if (item.MovieStatus == 1)
+                        {
+                            <button class="btn btn-block bg-dark my-3 col-md-4 offset-4" onclick="redirect('booking')" disabled><i class="fa fa-film" aria-hidden="true"></i> <span class="text-danger font-weight-bold">Sắp chiếu</span></button>
+                        }
+                    </div>
+                </div>
+
+            }
+            <div class="text-center">
+                <br />
+                <br />
+                <br />
+                <br />
+                @for (int i = 1; i <= ViewBag.page; i++)
+                {
+                    <a href="/Search/Search?category=@ViewBag.checkcategory&nation=@ViewBag.checknation&page=@i" class="text-base-color activeX selected_page">&nbsp;@i&nbsp;</a>
+                }
+            </div>
+        </div>
+
+
+        <div class="col-md-2 justify-content-end pr-0">
+
+        </div>
+    </div>
+</div>

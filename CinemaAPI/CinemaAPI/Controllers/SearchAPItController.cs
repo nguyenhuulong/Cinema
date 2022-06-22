@@ -21,7 +21,7 @@ namespace CinemaAPI.Controllers
         [ResponseType(typeof(MOVIE))]
         public async Task<IHttpActionResult> FilmCategory()
         {
-            var result = db.Database.SqlQuery<string>($"exec FilmCategory");
+            var result = db.Database.SqlQuery<Film_Category>($"exec FilmCategory");
             await result.ToListAsync();
             if (result == null)
             {
@@ -36,7 +36,7 @@ namespace CinemaAPI.Controllers
         [ResponseType(typeof(MOVIE))]
         public async Task<IHttpActionResult> FilmNation()
         {
-            var result = db.Database.SqlQuery<string>($"exec FilmNation");
+            var result = db.Database.SqlQuery<Film_Nation>($"exec FilmNation");
             await result.ToListAsync();
             if (result == null)
             {
@@ -67,7 +67,7 @@ namespace CinemaAPI.Controllers
         [Microsoft.AspNetCore.Mvc.Route("{Name}/{Nation}")]
         public async Task<IHttpActionResult> SearchFilmByNameAndNation([FromRoute] string Name, [FromRoute] string nation)
         {
-            var result = db.Database.SqlQuery<MOVIE>($"exec SearchFilm_Nation @name=N'{Name}, @nation = N'{nation}'");
+            var result = db.Database.SqlQuery<MOVIE>($"exec SearchFilm_Nation @name=N'{Name}', @nation = N'{nation}'");
             await result.ToListAsync();
             if (result == null)
             {
@@ -82,7 +82,7 @@ namespace CinemaAPI.Controllers
         [Microsoft.AspNetCore.Mvc.Route("{Name}/{Nation}")]
         public async Task<IHttpActionResult> SearchFilmByNameAndCategory([FromRoute] string Name, [FromRoute] string Category)
         {
-            var result = db.Database.SqlQuery<MOVIE>($"exec SearchFilm_Category @name=N'{Name}, @category = N'{Category}'");
+            var result = db.Database.SqlQuery<MOVIE>($"exec SearchFilm_Category @name=N'{Name}', @category = N'{Category}'");
             await result.ToListAsync();
             if (result == null)
             {
@@ -97,7 +97,7 @@ namespace CinemaAPI.Controllers
         [Microsoft.AspNetCore.Mvc.Route("{Name}/{Nation}")]
         public async Task<IHttpActionResult> SearchFilmByNameAndNation_Category([FromRoute] string Name, [FromRoute] string Nation, [FromRoute] string Category)
         {
-            var result = db.Database.SqlQuery<MOVIE>($"exec SearchFilm_Category @name=N'{Name}, @nation = N'{Nation}', @category=N'{Category}");
+            var result = db.Database.SqlQuery<MOVIE>($"exec SearchFilm_Nation_Category @name=N'{Name}', @nation = N'{Nation}', @category=N'{Category}'");
             await result.ToListAsync();
             if (result == null)
             {
