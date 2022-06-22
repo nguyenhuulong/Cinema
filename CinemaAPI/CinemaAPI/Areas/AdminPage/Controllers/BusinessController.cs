@@ -175,15 +175,16 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
 
         [HttpPut]
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> EditService(string id, JObject result)
+        public async Task<IHttpActionResult> EditService(string id, JObject sERVICE)
         {
-            SERVICE sERVICE = JsonConvert.DeserializeObject<SERVICE>(result.ToString());
+
+            SERVICE result = JsonConvert.DeserializeObject<SERVICE>(sERVICE.ToString());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != sERVICE.ServiceID)
+            if (id != result.ServiceID)
             {
                 return BadRequest();
             }
