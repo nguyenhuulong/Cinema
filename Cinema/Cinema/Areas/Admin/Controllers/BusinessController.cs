@@ -401,6 +401,8 @@ namespace Cinema.Areas.Admin.Controllers
         {
             ViewBag.DiscountID = id;
             List<JObject> discount = new List<JObject>(9999);
+            List<JObject> discountTotal = new List<JObject>(9999);
+
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("http://localhost:8085/api/Bussiness/"); // ???
             client.DefaultRequestHeaders.Accept.Clear();
@@ -431,9 +433,9 @@ namespace Cinema.Areas.Admin.Controllers
                 JArray listMovieJA = JArray.Parse(readTask.Result);
                 foreach (JObject o in listMovieJA.Children<JObject>())
                 {
-                    discount.Add(o);
+                    discountTotal.Add(o);
                 }
-                ViewBag.discountTotal = discount;
+                ViewBag.discountTotal = discountTotal;
             }
             return View();
         }

@@ -11,19 +11,19 @@
             <div class="row form-group">
                 <label class="col-4" for="discount_ID">Mã giảm giá</label>
                 <div class="d-flex flex-column col-8 p-0">
-                    <input class="p-2" type="text" id="discount_ID" name="discount_ID" value="@ViewBag.discount.CodeID" / disabled>
+                    <input class="p-2" type="text" id="discount_ID" name="discount_ID" value="@ViewBag.discount.ElementAt(0)" / disabled>
                 </div>
             </div>
             <div class="row form-group">
                 <label class="col-4" for="discount_t">% giảm giá</label>
                 <div class="d-flex flex-column col-8 p-0">
-                    <input class="p-2" type="text" id="discount_t" name="discount_t" value="@ViewBag.discount.DiscountNumber" />
+                    <input class="p-2" type="text" id="discount_t" name="discount_t" value="@ViewBag.discount.ElementAt(1)" />
                 </div>
             </div>
             <div class="row form-group">
                 <label class="col-4" for="discount_stt">Trạng thái</label>
                 <div class="d-flex flex-column col-8 p-0">
-                    <input class="p-2" type="text" id="discount_stt" name="discount_stt" value="@ViewBag.discount.State" />
+                    <input class="p-2" type="text" id="discount_stt" name="discount_stt" value="@ViewBag.discount.ElementAt(2)" />
                 </div>
             </div>
 

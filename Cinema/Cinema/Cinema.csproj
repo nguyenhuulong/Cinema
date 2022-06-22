@@ -161,7 +161,6 @@
     <Compile Include="class\CINEMA.cs" />
     <Compile Include="class\CinemaDB.cs" />
     <Compile Include="class\CinemaItem.cs" />
-    <Compile Include="class\CINEMA_IMAGE.cs" />
     <Compile Include="class\CINEMA_LOCATION.cs" />
     <Compile Include="class\DEPARTMENT.cs" />
     <Compile Include="class\DISCOUNT_CODE.cs" />

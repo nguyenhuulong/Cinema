@@ -1,10 +1,8 @@
-namespace CinemaAPI.Models
-{
+
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     public partial class POST_CONTENT
     {
@@ -27,4 +25,3 @@ namespace CinemaAPI.Models
 
         public string PostPara3 { get; set; }
     }
-}

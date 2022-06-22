@@ -3,7 +3,6 @@
 }
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <title>Cinema Admin</title>
@@ -27,7 +26,7 @@
     @using (Html.BeginForm())
     {
         <!-- [ auth-signin ] start -->
-        <div class="auth-wrapper" >
+        <div class="auth-wrapper">
             <div class="auth-content container">
                 <div class="card" id="Auth">
                     <div class="row align-items-center ">
@@ -57,35 +56,35 @@
 
 
                                 <form action="" method="post">
-                                    <div class="input-group mb-2">
-                                        <label for="user" class="label">Tài khoản</label>
-                                        <input id="user" name="user" type="text" class="input" placeholder="">
-                                        <input type="hidden" id="hidID" value="0" />
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <label for="pass" class="label">Mật khẩu</label>
-                                        <input id="pass" name="pass" type="password" class="input" data-type="password" placeholder="">
-                                    </div>
-                                    <div class="form-group text-center mt-2">
-                                        <input id="check" name="checkbox" type="checkbox" class="check" checked>
-                                        <label for="check"><span class="icon"></span> Nhớ mật khẩu của tôi</label>
-                                    </div>
-                                    <div class="group">
-                                        <input type="button" class="button" value="Sign In" onclick="login()">
-                                    </div>
+                                        <div class="input-group mb-2">
+                                            <label for="user" class="label">Tài khoản</label>
+                                            <input id="user" name="user" type="text" class="input" placeholder="">
+                                            <input type="hidden" id="hidID" value="0" />
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <label for="pass" class="label">Mật khẩu</label>
+                                            <input id="pass" name="pass" type="password" class="input" data-type="password" placeholder="">
+                                        </div>
+                                        <div class="form-group text-center mt-2">
+                                            <input id="check" name="checkbox" type="checkbox" class="check" checked>
+                                            <label for="check"><span class="icon"></span> Nhớ mật khẩu của tôi</label>
+                                        </div>
+                                        <div class="group">
+                                            <input type="button" class="button" value="Sign In" onclick="login()">
+                                        </div>
 
-                                    <div class="group text-danger text-bold" id="notif_signin">
+                                        <div class="group text-danger text-bold" id="notif_signin">
 
-                                    </div>
-                                    <div class="group text-danger text-bold" id="notif_signin_success">
+                                        </div>
+                                        <div class="group text-danger text-bold" id="notif_signin_success">
 
-                                    </div>
-                                    <div class="hr"></div>
-                                    <div class="foot-lnk">
-                                        <a href="#forgot">Quên mật khẩu?</a>
-                                    </div>
+                                        </div>
+                                        <div class="hr"></div>
+                                        <div class="foot-lnk">
+                                            <a href="#forgot">Quên mật khẩu?</a>
+                                        </div>
 
-                                </form>
+                                    </form>
                             </div>
 
                             @Html.AntiForgeryToken()
@@ -94,7 +93,7 @@
 
                         </div>
                         <div class="col-md-6 d-none d-md-block">
-                           
+
                         </div>
                     </div>
                 </div>
