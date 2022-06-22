@@ -175,7 +175,9 @@ namespace Cinema.Controllers
                             {
                                 var readTask = result.Content.ReadAsStringAsync();
                                 readTask.Wait();
-                                item1.seat_available = readTask.Result;
+                                string str = readTask.Result;
+                                str = str.Substring(1, str.Length - 2);
+                                item1.seat_available = str;
                             }
                             /*item1.seat_available = db.Database.SqlQuery<int>($"exec QuantityLeft N'{item.MovieName}', '{item1.roomid}',N'{item1.showtime}'").ToList()[0];*/
                         }
@@ -230,7 +232,9 @@ namespace Cinema.Controllers
                                     left.Add(o);
                                 }
                                 item1.seat_available = left[0];*/
-                                item1.seat_available = readTask.Result;
+                                string str = readTask.Result;
+                                str = str.Substring(1, str.Length - 2);
+                                item1.seat_available = str;
                             }
                             /*item1.seat_available = db.Database.SqlQuery<int>($"exec QuantityLeft N'{item.MovieName}', '{item1.roomid}',N'{item1.showtime}'").ToList()[0];*/
                         }
@@ -285,7 +289,9 @@ namespace Cinema.Controllers
                                     left.Add(o);
                                 }
                                 item1.seat_available = left[0];*/
-                                item1.seat_available = readTask.Result;
+                                string str = readTask.Result;
+                                str = str.Substring(1, str.Length - 2);
+                                item1.seat_available = str;
 
                             }
                             /*item1.seat_available = db.Database.SqlQuery<int>($"exec QuantityLeft N'{item.MovieName}', '{item1.roomid}',N'{item1.showtime}'").ToList()[0];*/

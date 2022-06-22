@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewBag.Title = "OREGON Quản lý | Phim";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<h5 class="ml-4 mt-4">QUẢN LÝ PHIM</h5>
+<div class="content-title-line card-phim ml-4"></div>
+<div class="phim-content d-flex row mx-2">
+    <div class="card-content col-xl-3 col-md-6 p-4">
+        <div class="card-div card-phim d-flex p-4">
+            <div class="card-icon">
+                <div class="card-icon-inside card-icon-inside-phim"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></div>
+            </div>
+            <div class="card-content">
+                <div class="card-title">Số phim đang chiếu</div>
+                <div class="card-info">4</div>
+            </div>
+        </div>
+    </div>
+    <div class="card-content col-xl-3 col-md-6 p-4">
+        <div class="card-div card-phim d-flex p-4">
+            <div class="card-icon">
+                <div class="card-icon-inside card-icon-inside-phim"><i class="fa fa-calendar-times-o" aria-hidden="true"></i></div>
+            </div>
+            <div class="card-content">
+                <div class="card-title">Số phim sắp chiếu</div>
+                <div class="card-info">4</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row m-0 p-0">
+    <h5 class="ml-4 mt-4">Danh sách phim</h5><button class="btn-add card-phim px-2 ml-3 mt-2"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Thêm</button>
+</div>
+<div class="content-title-line card-phim ml-4"></div>
+<table class="table table-hover" style="width: 90%; margin: 2rem auto;">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Mã phim</th>
+            <th scope="col">Tên phim</th>
+            <th scope="col">Tình trạng</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>MV0001</th>
+            <th>ShangChi Và Huyền Thoại Thập Nhẫn</th>
+            <th>Đang chiếu</th>
+            <th><button class="btn-edit p-2 mr-3">Sửa</button><button class="btn-del p-2">Xóa</button></th>
+        </tr>
+        <tr>
+            <th>ADMIN02</th>
+            <th>admincontent</th>
+            <th>Quản lý kinh doanh</th>
+            <th><button class="btn-edit p-2 mr-3">Sửa</button><button class="btn-del p-2">Xóa</button></th>
+        </tr>
+        <tr>
+            <th>ADMIN03</th>
+            <th>admincontent</th>
+            <th>Quản lý kinh doanh</th>
+            <th><button class="btn-edit p-2 mr-3">Sửa</button><button class="btn-del p-2">Xóa</button></th>
+        </tr>
+        <tr>
+            <th>ADMIN04</th>
+            <th>admincontent</th>
+            <th>Quản lý kinh doanh</th>
+            <th><button class="btn-edit p-2 mr-3">Sửa</button><button class="btn-del p-2">Xóa</button></th>
+        </tr>
+    </tbody>
+</table>
+
+<div class="row m-0 p-0">
+    <h5 class="ml-4 mt-4">Danh sách các suất chiếu</h5><button class="btn-add card-phim px-2 ml-3 mt-2"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Thêm</button>
+</div>
+<div class="content-title-line card-phim ml-4"></div>
+<table class="table table-hover" style="width: 90%; margin: 2rem auto;">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Mã suất chiếu</th>
+            <th scope="col">Giờ chiếu</th>
+            <th scope="col">Tên phim</th>
+            <th scope="col">Tên phòng</th>
+            <th scope="col">Tên rạp</th>
+            <th scope="col">Số ghế trống</th>
+            <th scope="col">Tình trạng</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>MVT00000001</th>
+            <th>8:00</th>
+            <th>ShangChi Và Huyền Thoại Thập Nhẫn</th>
+            <th>2</th>
+            <th>OREGON Bà Triệu</th>
+            <th>64</th>
+            <th>Chưa tới</th>
+            <th><button class="btn-edit p-2 mr-3">Sửa</button><button class="btn-del p-2">Xóa</button></th>
+        </tr>
+        <tr>
+            <th>MVT00000001</th>
+            <th>8:00</th>
+            <th>ShangChi Và Huyền Thoại Thập Nhẫn</th>
+            <th>2</th>
+            <th>OREGON Bà Triệu</th>
+            <th>64</th>
+            <th>Chưa tới</th>
+            <th><button class="btn-edit p-2 mr-3">Sửa</button><button class="btn-del p-2">Xóa</button></th>
+        </tr>
+        <tr>
+            <th>MVT00000001</th>
+            <th>8:00</th>
+            <th>ShangChi Và Huyền Thoại Thập Nhẫn</th>
+            <th>2</th>
+            <th>OREGON Bà Triệu</th>
+            <th>64</th>
+            <th>Chưa tới</th>
+            <th><button class="btn-edit p-2 mr-3">Sửa</button><button class="btn-del p-2">Xóa</button></th>
+        </tr>
+        <tr>
+            <th>MVT00000001</th>
+            <th>8:00</th>
+            <th>ShangChi Và Huyền Thoại Thập Nhẫn</th>
+            <th>2</th>
+            <th>OREGON Bà Triệu</th>
+            <th>64</th>
+            <th>Chưa tới</th>
+            <th><button class="btn-edit p-2 mr-3">Sửa</button><button class="btn-del p-2">Xóa</button></th>
+        </tr>
+        <tr>
+            <th>MVT00000001</th>
+            <th>8:00</th>
+            <th>ShangChi Và Huyền Thoại Thập Nhẫn</th>
+            <th>2</th>
+            <th>OREGON Bà Triệu</th>
+            <th>64</th>
+            <th>Chưa tới</th>
+            <th><button class="btn-edit p-2 mr-3">Sửa</button><button class="btn-del p-2">Xóa</button></th>
+        </tr>
+    </tbody>
+</table>

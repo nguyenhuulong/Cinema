@@ -284,13 +284,20 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\BookingAPIController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\CinemaAPIController.cs" />
+    <Compile Include="Controllers\CinematicAPIController.cs" />
     <Compile Include="Controllers\CinematicController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HomepageAPIController.cs" />
+    <Compile Include="Controllers\MovieAPIController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\PublicAPIController.cs" />
+    <Compile Include="Controllers\SearchAPItController.cs" />
+    <Compile Include="Controllers\TicketAPIController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
+    <Compile Include="Controllers\UserAPIController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -320,7 +327,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".vs\ProjectSettings.json" />
+    <Content Include=".vs\slnx.sqlite" />
+    <Content Include=".vs\VSWorkspaceState.json" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="bin\CinemaAPI.dll" />
+    <Content Include="bin\CinemaAPI.pdb" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -372,11 +384,14 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include=".vs\CinemaAPI\v16\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\AdminPage\Data\" />
     <Folder Include="Areas\AdminPage\Views\Admin\" />
     <Folder Include="Areas\AdminPage\Views\Login\" />
     <Folder Include="Areas\AdminPage\Views\Shared\" />
+    <Folder Include="aspnet_client\system_web\2_0_50727\" />
+    <Folder Include="aspnet_client\system_web\4_0_30319\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
