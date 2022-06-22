@@ -171,4 +171,10 @@ namespace CinemaAPI.Models
         public string UserID { get; set; }
 
     }
+    public class Seat
+    {
+        [StringLength(4)]
+        public string SeatName { get; set; }
+
+    }
 }

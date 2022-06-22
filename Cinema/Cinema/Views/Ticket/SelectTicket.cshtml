@@ -1,0 +1,144 @@
+﻿
+<div class="modal-dialog modal-xl select_seat" role="document" id="select_ticket">
+    <div class="modal-content" id="1">
+        <div class="booking-2-header d-flex py-3 col-12">
+            <div class="auth-confirm col-3">
+                <h5>Xin chào, @ViewBag.name</h5>
+                <h6>Không phải bạn? <a href="#" class="text-base-color" style="text-decoration: underline;">Đăng xuất</a></h6>
+            </div>
+            <h4 class="col-7">
+                <span class="text-select mx-1">ĐẶT VÉ</span>
+                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                <span class="mx-1">CHỌN CHỖ</span>
+                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                <span>DỊCH VỤ</span>
+                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                <span>THANH TOÁN</span>
+            </h4>
+            <div class="booking-clock col-2">
+                <h6 class="text-bold">Thời gian còn</h6>
+                <h5><span>10:00</span></h5>
+            </div>
+        </div>
+        <div class="pre-booking">
+            <div class="pre-info d-flex py-4">
+                <img src="~/images/movie/poster/@ViewBag.Image" alt="">
+                <ul>
+                    <h6 class="mb-3"><i class="fa fa-check-circle text-base-color" aria-hidden="true"></i> Bạn đang đặt vé phim: <span>@ViewBag.filmname (@ViewBag.screentype)</span></h6>
+                    <h6 class="mb-3"><i class="fa fa-check-circle text-base-color" aria-hidden="true"></i> Rạp: <span>@ViewBag.CinemaName, @ViewBag.CinemaAddress</span></h6>
+                    <h6 class="mb-3"><i class="fa fa-check-circle text-base-color" aria-hidden="true"></i> Ngày chiếu: <span>@ViewBag.datetime</span></h6>
+                    <h6 class="mb-3"><i class="fa fa-check-circle text-base-color" aria-hidden="true"></i> Giờ chiếu: <span>@ViewBag.showtime - Phòng @ViewBag.room</span></h6>
+                </ul>
+            </div>
+        </div>
+        <div class="ticket-select">
+            <h5 class="pt-3">Nhập mã giảm giá (nếu có)</h5>
+            <form class="voucher-form">
+                <input type="text" id="voucher" placeholder="Nhập mã" />
+                <input type="button" onclick="checkvoucher()" value="Thêm mã" class="btn btn-dark" />
+            </form>
+            <p class="text-danger" id="checkvc_alert"></p>
+            <p class="text-success" id="checkvc_success"></p>
+            <div class="d-flex text-base-color my-3">
+                <h5 class="text-bold" style="flex: 4">Chọn vé</h5>
+                <h5 class="text-bold" style="flex: 3">Giá vé</h5>
+                <h5 class="text-bold text-center" style="flex: 1">Số lượng</h5>
+            </div>
+            @foreach (var item in ViewBag.tickettype)
+            {
+                <div class="container-horizontal-line my-3"></div>
+                <div class="d-flex">
+                    <h5 style="flex: 4">@item.TicketTypeName</h5>
+                    <h5 style="flex: 3">@item.Price</h5>
+                    <h5 style="flex: 1" class="text-center">
+                        <button class="btn-ticket-quantity"><i class="fa fa-minus-circle" onclick="deg('@item.TicketTypeID')" aria-hidden="true"></i></button>
+                        <span id="@item.TicketTypeID"> 0 </span>
+                        <button class="btn-ticket-quantity"><i class="fa fa-plus-circle" onclick="add('@item.TicketTypeID')" aria-hidden="true"></i></button>
+                    </h5>
+                </div>
+            }
+            <button id="confirm-ticket-quantity" type="button" class="btn btn-lg btn-dark text-bold mb-3 ml-3" onclick="showtime2()">Xác nhận</button>
+            <button id="confirm-ticket-quantity" type="button" class="btn btn-lg btn-light text-bold mb-3 ml-3">Hủy</button>
+        </div>
+    </div>
+    <div class="modal fade" id="SelectSeat" role="dialog"></div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/Content/HomePage.css">
+    <script>
+        function checkvoucher() {
+            var voucher = $('#voucher').val();
+            $.get('/Ticket/CheckVoucher', { vc: voucher }, function (data) {
+                if (data == "ok") {
+                    document.getElementById("checkvc_success").innerHTML = "Thêm voucher thành công !!!";
+                }
+                else {
+                    document.getElementById("checkvc_alert").innerHTML = "Voucher đã hết hạn hoặc không tồn tại !";
+                }
+            });
+        }
+        var ticket = new Array();
+        function add(id) {
+            if (id == "TKT4") {
+                ticket.push(id);
+                ticket.push(id);
+                ticket.push(id);
+                ticket.push(id);
+            }
+            else {
+                ticket.push(id);
+            }
+            document.getElementById("" + id).innerHTML = "";
+            document.getElementById("" + id).innerHTML = ticket.filter(x => x === id).length;
+        }
+        function deg(id) {
+            if (id == "TKT4") {
+                ticket.pop(id);
+                ticket.pop(id);
+                ticket.pop(id);
+                ticket.pop(id);
+            }
+            else {
+                ticket.pop(id);
+            }
+            document.getElementById("" + id).innerHTML = "";
+            document.getElementById("" + id).innerHTML = ticket.filter(x => x === id).length;
+        }
+        function showtime2() {
+            if (ticket.length != 0) {
+                $.get('/Ticket/SelectSeat', $.param({ data: ticket, vc: voucher }, true), function (data) {
+                    $('#1').hide();
+                    $('.modal-backdrop').hide();
+                    $('#SelectSeat').html(data);
+                    $('#SelectSeat').modal('show');
+
+                });
+            }
+
+        }
+        function refresh() {
+            $.get('/Ticket/Refresh', function (data) {
+
+            });
+        }
+        document.addEventListener(
+            "click",
+            function (event) {
+                // If user either clicks X button OR clicks outside the modal window, then close modal by calling closeModal()
+                if (
+
+                    !event.target.closest("#select_ticket")
+                ) {
+                    $('.modal-backdrop').hide();
+                    refresh();
+                    this.location.reload();
+                }
+            },
+            false
+        )
+    </script>
+</div>
+

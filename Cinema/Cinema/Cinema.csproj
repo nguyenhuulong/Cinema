@@ -184,6 +184,7 @@
     <Compile Include="Controllers\InstructionController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -478,6 +479,10 @@
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\UserInfo.cshtml" />
+    <Content Include="Views\Ticket\SelectTicket.cshtml" />
+    <Content Include="Views\Ticket\SelectSeat.cshtml" />
+    <Content Include="Views\Ticket\SelectService.cshtml" />
+    <Content Include="Views\Ticket\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

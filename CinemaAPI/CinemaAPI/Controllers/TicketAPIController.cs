@@ -58,16 +58,15 @@ namespace CinemaAPI.Controllers
 
         //GetRoomFromID
         [System.Web.Http.HttpGet]
-        [ResponseType(typeof(MOVIE))]
+        [ResponseType(typeof(ROOM))]
         public async Task<IHttpActionResult> GetRoomFromID(string ID)
         {
-            var room = db.Database.SqlQuery<MOVIE>($"exec GetFilmFromName N'{ID}'");
+            var room = db.Database.SqlQuery<ROOM>($"exec GetRoomById N'{ID}'");
             await room.ToListAsync();
             if (room == null)
             {
                 return NotFound();
             }
-
             return Json(room);
         }
 
@@ -170,7 +169,7 @@ namespace CinemaAPI.Controllers
         [Microsoft.AspNetCore.Mvc.Route("{MovieName}/{Room}/{ShowTime}")]
         public async Task<IHttpActionResult> GetListSeatBooked([FromRoute] string MovieName, [FromRoute] string Room, [FromRoute] string ShowTime)
         {
-            var seat = db.Database.SqlQuery<string>($"exec GetListSeatBooked N'{MovieName}', '{Room}', '{ShowTime}', N'2021-10-25'");
+            var seat = db.Database.SqlQuery<Seat>($"exec GetListSeatBooked N'{MovieName}', '{Room}', '{ShowTime}', N'2021-10-25'");
             await seat.ToListAsync();
             if (seat == null)
             {

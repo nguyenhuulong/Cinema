@@ -1,0 +1,88 @@
+﻿
+
+
+<div class="modal-dialog modal-xl modal-dialog-scrollable" role="document" id="select_service">
+    <div class="modal-content" id="3">
+        <div class="modal-body">
+            <div class="booking-2-header d-flex py-3 col-12">
+                <div class="col-3">
+                    <h5>Xin chào, @ViewBag.name</h5>
+                    <h6>Không phải bạn? <a href="#" class="text-base-color" style="text-decoration: underline;">Đăng xuất</a></h6>
+                </div>
+                <h4 class="col-7">
+                    <span class="mx-1">ĐẶT VÉ</span>
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    <span class="mx-1">CHỌN CHỖ</span>
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    <span class="text-select mx-1">DỊCH VỤ</span>
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    <span class="mx-1">THANH TOÁN</span>
+                </h4>
+                <div class="booking-clock col-2">
+                    <h6 class="text-bold">Thời gian còn</h6>
+                    <h5><span>10:00</span></h5>
+                </div>
+            </div>
+            <div class="pre-booking">
+                <div class="pre-info d-flex py-4">
+                    <img src="~/images/movie/poster/@ViewBag.Image" alt="">
+                    <ul>
+                        <h6 class="mb-3"><i class="fa fa-check-circle text-base-color" aria-hidden="true"></i> Bạn đang đặt vé phim: <span>@ViewBag.FilmName (@ViewBag.ScreenType)</span></h6>
+                        <h6 class="mb-3"><i class="fa fa-check-circle text-base-color" aria-hidden="true"></i> Rạp: <span>@ViewBag.CinemaName, @ViewBag.CinemaAddress</span></h6>
+                        <h6 class="mb-3"><i class="fa fa-check-circle text-base-color" aria-hidden="true"></i> Ngày chiếu: <span>@ViewBag.datetime</span></h6>
+                        <h6 class="mb-3"><i class="fa fa-check-circle text-base-color" aria-hidden="true"></i> Giờ chiếu: <span>@ViewBag.showtime - Phòng @ViewBag.room</span></h6>
+                    </ul>
+                </div>
+            </div>
+            <div class="service-select ">
+                <div class="row">
+                    @foreach (var item in ViewBag.service)
+                    {
+                        <div class="service-info col-md-4">
+                            <img src="~/images/service/@item.ServiceImage" alt="">
+                            <h5>@item.ServiceName<span class="price">@item.ServicePrice VNĐ</span></h5>
+                            <div class="service-quantity my-2 d-flex">
+                                <button class="btn-ticket-quantity"><i class="fa fa-minus-circle" aria-hidden="true" onclick="deg('@item.ServiceID')"></i></button>
+                                <span class="mx-2" id="@item.ServiceID">0</span>
+                                <button class="btn-ticket-quantity"><i class="fa fa-plus-circle" aria-hidden="true" onclick="add('@item.ServiceID')"></i></button>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+                <button id="confirm-ticket-quantity" type="button" onclick="showtime4()" class="btn btn-lg btn-dark text-bold mb-3 mr-3">Xác nhận</button>
+                <button id="confirm-ticket-quantity" type="button" class="btn btn-lg btn-light text-bold mb-3 mr-3">Quay lại</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="Payment" role="dialog"></div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/Content/HomePage.css">
+    <script>
+        var ticket = new Array();
+        function add(id) {
+            ticket.push(id);
+            document.getElementById("" + id).innerHTML = "";
+            document.getElementById("" + id).innerHTML = ticket.filter(x => x === id).length;
+        }
+        function deg(id) {
+            ticket.pop(id);
+            document.getElementById("" + id).innerHTML = "";
+            document.getElementById("" + id).innerHTML = ticket.filter(x => x === id).length;
+        }
+        function showtime4() {
+            $.get('/Ticket/Payment', $.param({ data: ticket }, true), function (data) {
+                $('#3').hide();
+                $('.modal-backdrop').hide();
+                $('#Payment').html(data);
+                $('#Payment').modal('show');
+            });
+        }
+        function reload() {
+            location.reload();
+        }
+    </script>
+</div>

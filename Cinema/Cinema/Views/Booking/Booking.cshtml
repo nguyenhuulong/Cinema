@@ -52,6 +52,9 @@
                 {
                     <option selected value="@Url.Action("Booking","Booking", new { name = ViewBag.check,location="all" })">Tất cả tỉnh/ thành phố</option>
                 }
+                else {
+                    <option value="@Url.Action("Booking","Booking", new { name = ViewBag.check,location="all" })">Tất cả tỉnh/ thành phố</option>
+                }
                 @foreach (var item in ViewBag.LC)
                 {
                     if (item.LocationName == ViewBag.location)
