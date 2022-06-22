@@ -130,6 +130,7 @@
     <Compile Include="Controllers\HomepageController.cs" />
     <Compile Include="Controllers\InstructionController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -419,6 +420,8 @@
     <Content Include="Views\Movie\MovieCurrent.cshtml" />
     <Content Include="Views\Movie\MovieFuture.cshtml" />
     <Content Include="Views\Cinema\Cinema.cshtml" />
+    <Content Include="Views\Booking\Booking.cshtml" />
+    <Content Include="Views\Search\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

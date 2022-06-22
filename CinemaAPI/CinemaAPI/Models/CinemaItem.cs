@@ -153,4 +153,14 @@ namespace CinemaAPI.Models
         [StringLength(30)]
         public string PostCategory { get; set; }
     }
+    public class Film_Category
+    {
+        [StringLength(30)]
+        public string Category { get; set; }
+    }
+    public class Film_Nation
+    {
+        [StringLength(30)]
+        public string Nation { get; set; }
+    }
 }

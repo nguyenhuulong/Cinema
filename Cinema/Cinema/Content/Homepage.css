@@ -18,8 +18,13 @@ html {
     background-color: black;
 }
 
+.btn-base-color2 {
+    background-color: #2b6ec7;
+    color: white !important;
+}
+
 .btn-base-color {
-    background-color: #2b6ec7 !important;
+    background-color: #2b6ec7;
     color: white !important;
 }
 
