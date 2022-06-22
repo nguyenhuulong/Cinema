@@ -11,8 +11,8 @@ namespace CinemaAPI.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public USER_ACCOUNT()
         {
-            /*BILLs = new HashSet<BILL>();
-            FEEDBACKs = new HashSet<FEEDBACK>();*/
+            BILLs = new HashSet<BILL>();
+            FEEDBACKs = new HashSet<FEEDBACK>();
         }
 
         [Key]
@@ -29,11 +29,11 @@ namespace CinemaAPI.Models
 
         [StringLength(30)]
         public string email { get; set; }
-  
-        /*[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BILL> BILLs { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FEEDBACK> FEEDBACKs { get; set; }*/
+        public virtual ICollection<FEEDBACK> FEEDBACKs { get; set; }
     }
 }

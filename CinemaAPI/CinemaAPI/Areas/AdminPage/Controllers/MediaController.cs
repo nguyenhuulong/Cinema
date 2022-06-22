@@ -19,7 +19,10 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
     public class MediaController : ApiController
     {
         private CinemaDB db = new CinemaDB();
-
+        public IQueryable<ADMIN_ACCOUNT> GetAdminAccount()
+        {
+            return db.ADMIN_ACCOUNT;
+        }
         //GetMaxPostID
         [HttpGet]
         [ResponseType(typeof(POST))]

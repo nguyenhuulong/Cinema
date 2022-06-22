@@ -154,7 +154,11 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\BusinessController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FacilityController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HumanResourceController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MediaController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MovieAdminController.cs" />
     <Compile Include="class\AD.cs" />
     <Compile Include="class\ADMIN_ACCOUNT.cs" />
     <Compile Include="class\BILL.cs" />
