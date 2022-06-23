@@ -7,23 +7,23 @@
 <div class="content-title-line card-nhansu ml-4"></div>
 <div class="container">
     <div class="modal-body">
-        <form action="/Admin/Business/EditDiscount?id=@ViewBag.DiscountID" method="post" class="d-flex justify-content-center flex-column needs-validation" novalidate>
+        <form action="/Admin/Business/EditDiscount?id=@ViewBag.DiscountID.ToString()" method="post" class="d-flex justify-content-center flex-column needs-validation" novalidate>
             <div class="row form-group">
                 <label class="col-4" for="discount_ID">Mã giảm giá</label>
                 <div class="d-flex flex-column col-8 p-0">
-                    <input class="p-2" type="text" id="discount_ID" name="discount_ID" value="@ViewBag.discount.ElementAt(0)" / disabled>
+                    <input class="p-2" type="text" id="discount_ID" name="discount_ID" value="@ViewBag.discount.CodeID" / disabled>
                 </div>
             </div>
             <div class="row form-group">
                 <label class="col-4" for="discount_t">% giảm giá</label>
                 <div class="d-flex flex-column col-8 p-0">
-                    <input class="p-2" type="text" id="discount_t" name="discount_t" value="@ViewBag.discount.ElementAt(1)" />
+                    <input class="p-2" type="text" id="discount_t" name="discount_t" value="@ViewBag.discount.DiscountNumber" />
                 </div>
             </div>
             <div class="row form-group">
                 <label class="col-4" for="discount_stt">Trạng thái</label>
                 <div class="d-flex flex-column col-8 p-0">
-                    <input class="p-2" type="text" id="discount_stt" name="discount_stt" value="@ViewBag.discount.ElementAt(2)" />
+                    <input class="p-2" type="text" id="discount_stt" name="discount_stt" value="@ViewBag.discount.State" />
                 </div>
             </div>
 

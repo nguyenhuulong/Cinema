@@ -23,7 +23,7 @@
             </div>
             <div class="card-content">
                 <div class="card-title">Số rạp chiếu phim</div>
-                <div class="card-info">@ViewBag.cinemas.Count</div>
+                <div class="card-info"></div>
             </div>
         </div>
     </div>
@@ -71,7 +71,7 @@
                     }
                 }
                 <th style="width: 30%">@cinemaCount</th>
-                <th style="width: 24%"><a href="/Admin/Facility/EditLocationView?locationId=@location.LocationID" class="btn-edit p-2 mr-3">Sửa</a><a href="/Admin/Facility/DeleteLocation?locationId=@location.LocationID" class="btn-del p-2">Xóa</a></th>
+                <th style="width: 24%"><a href="/Admin/Facility/EditLocationView?locationId=@location.LocationID.ToString()" class="btn-edit p-2 mr-3">Sửa</a><a href="/Admin/Facility/DeleteLocation?locationId=@location.LocationID.ToString()" class="btn-del p-2">Xóa</a></th>
             </tr>
         }
     </table>
@@ -114,7 +114,7 @@
                     }
                 }
                 <th style="width: 10%">@roomCount</th>
-                <th style="width: 15%"><a href="/Admin/Facility/EditCinemaView?cinemaId=@cinema.CinemaID" class="btn-edit p-2 mr-3">Sửa</a><a href="/Admin/Facility/DeleteCinema?cinemaId=@cinema.CinemaID" class="btn-del p-2">Xóa</a></th>
+                <th style="width: 15%"><a href="/Admin/Facility/EditCinemaView?cinemaId=@cinema.CinemaID.ToString()" class="btn-edit p-2 mr-3">Sửa</a><a href="/Admin/Facility/DeleteCinema?cinemaId=@cinema.CinemaID.ToString()" class="btn-del p-2">Xóa</a></th>
             </tr>
         }
     </table>
@@ -145,7 +145,7 @@
             <th style="width: 20%">@room.RoomName</th>
             <th style="width: 20%">@room.CinemaName</th>
             <th style="width: 20%">@room.ScreenType</th>
-            <th style="width: 20%"><a href="/Admin/Facility/EditRoomView?roomId=@room.RoomID" class="btn-edit p-2 mr-3">Sửa</a><a href="/Admin/Facility/DeleteRoom?roomId=@room.RoomID" class="btn-del p-2">Xóa</a></th>
+            <th style="width: 20%"><a href="/Admin/Facility/EditRoomView?roomId=@room.RoomID.ToString()" class="btn-edit p-2 mr-3">Sửa</a><a href="/Admin/Facility/DeleteRoom?roomId=@room.RoomID.ToString()" class="btn-del p-2">Xóa</a></th>
         </tr>
         }
     </table>

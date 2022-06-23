@@ -13,11 +13,6 @@ namespace Cinema.Areas.Admin.Controllers
 {
     public class BusinessController : Controller
     {
-        private readonly RestClient _client;
-        public BusinessController()
-        {
-            _client = new RestClient("http://localhost:8085/Help");
-        }
         // GET: Admin/Business
         public ActionResult Business()
         {
@@ -198,7 +193,7 @@ namespace Cinema.Areas.Admin.Controllers
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var responseMessage = client.PostAsync("AddTicketType??id=" + ID, content); /////////////////// truyen bien 
+            var responseMessage = client.PostAsync("AddTicketType", content); /////////////////// truyen bien 
             responseMessage.Wait();
             var result = responseMessage.Result;
             return RedirectToAction("/Business");
@@ -215,7 +210,7 @@ namespace Cinema.Areas.Admin.Controllers
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var responseMessage = client.GetAsync("GetTicketType??id=" + id); /////////////////// truyen bien 
+            var responseMessage = client.GetAsync("GetTicketType?id=" + id); /////////////////// truyen bien 
             responseMessage.Wait();
             var result = responseMessage.Result;
             if (result.IsSuccessStatusCode)
@@ -246,10 +241,9 @@ namespace Cinema.Areas.Admin.Controllers
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var responseMessage = client.PutAsync("EditTicketType??id=" + id, content); /////////////////// truyen bien 
+            var responseMessage = client.PutAsync("EditTicketType?id=" + id, content); /////////////////// truyen bien 
             responseMessage.Wait();
             var result = responseMessage.Result;
-            return View();
             return RedirectToAction("/Business");
         }
         public ActionResult DeleteTicketType(string id)
@@ -260,7 +254,7 @@ namespace Cinema.Areas.Admin.Controllers
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var responseMessage = client.DeleteAsync("DeleteTicketType??id=" + id); /////////////////// truyen bien 
+            var responseMessage = client.DeleteAsync("DeleteTicketType?id=" + id); /////////////////// truyen bien 
             responseMessage.Wait();
             return RedirectToAction("/Business");
         }
@@ -335,7 +329,7 @@ namespace Cinema.Areas.Admin.Controllers
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var responseMessage = client.GetAsync("GetService??id=" + id);
+                var responseMessage = client.GetAsync("GetService?id=" + id);
                 responseMessage.Wait();
                 var result = responseMessage.Result;
                 if (result.IsSuccessStatusCode)
@@ -362,7 +356,7 @@ namespace Cinema.Areas.Admin.Controllers
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var responseMessage = client.DeleteAsync("DeleteService??id=" + id); /////////////////// truyen bien 
+            var responseMessage = client.DeleteAsync("DeleteService?id=" + id); /////////////////// truyen bien 
             responseMessage.Wait();
             return RedirectToAction("/Business");
         }
@@ -374,15 +368,22 @@ namespace Cinema.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult AddDiscount()
         {
-            DISCOUNT_CODE d = new DISCOUNT_CODE();
             string ID = Request.Form["discount_ID"];
             string t = Request.Form["discount_t"];
             string stt = Request.Form["discount_stt"];
-            d.CodeID = ID;
-            d.State = int.Parse(t);
-            d.DiscountNumber = int.Parse(stt);
-            var request = new RestRequest($"api/Business/AddDiscount", Method.Post).AddObject(d);
-            _client.Execute(request);
+            JObject discount = new JObject();
+            discount["CodeID"] = ID;
+            discount["DiscountNumber"] = t;
+            discount["State"] = stt;
+            var content = new StringContent(JsonConvert.SerializeObject(discount), System.Text.Encoding.UTF8, "application/json");
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://localhost:8085/api/Business/"); // ???
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+            var responseMessage1 = client.PostAsync("AddDiscount?id=", content);
+            responseMessage1.Wait();
+            var result1 = responseMessage1.Result;
             return RedirectToAction("/Business");
         }
 
@@ -391,29 +392,30 @@ namespace Cinema.Areas.Admin.Controllers
         public ActionResult EditDiscountView(string id)
         {
             ViewBag.DiscountID = id;
-            List<JObject> discount = new List<JObject>(9999);
+            JObject discount = new  JObject();
             List<JObject> discountTotal = new List<JObject>(9999);
 
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://localhost:8085/api/Bussiness/"); // ???
+            client.BaseAddress = new Uri("http://localhost:8085/api/Business/"); // ???
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var responseMessage = client.GetAsync("GetDiscount??id=" + id);  
+            var responseMessage = client.GetAsync("GetDiscount?id=" + id);  
             responseMessage.Wait();
             var result = responseMessage.Result;
             if (result.IsSuccessStatusCode)
             {
                 var readTask = result.Content.ReadAsStringAsync();
                 readTask.Wait();
-                JArray listMovieJA = JArray.Parse(readTask.Result);
-                foreach (JObject o in listMovieJA.Children<JObject>())
-                {
-                    discount.Add(o);
-                }
-                ViewBag.discount = discount[0];
+                discount = JObject.Parse(readTask.Result);
             }
+            ViewBag.discount = discount;
+            HttpClient client2 = new HttpClient();
+            client2.BaseAddress = new Uri("http://localhost:8085/api/Admin/"); // ???
+            client2.DefaultRequestHeaders.Accept.Clear();
+            client2.DefaultRequestHeaders.Accept.Add(
+            new MediaTypeWithQualityHeaderValue("application/json"));
             responseMessage = client.GetAsync("GetDiscount");
             responseMessage.Wait();
             result = responseMessage.Result;
@@ -433,13 +435,22 @@ namespace Cinema.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult EditDiscount(string id)
         {
-            DISCOUNT_CODE d = new DISCOUNT_CODE();
+            string ID = Request.Form["discount_ID"];
             string t = Request.Form["discount_t"];
             string stt = Request.Form["discount_stt"];
-            d.State = Int32.Parse(t);
-            d.DiscountNumber = Int32.Parse(stt);
-            var request = new RestRequest($"api/Business/PutDiscount/{id}", Method.Put).AddObject(d);
-            _client.Execute(request);
+            JObject discount = new JObject();
+            discount["CodeID"] = ID;
+            discount["DiscountNumber"] = t;
+            discount["State"] = stt;
+            var content = new StringContent(JsonConvert.SerializeObject(discount), System.Text.Encoding.UTF8, "application/json");
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://localhost:8085/api/Business/"); // ???
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+            var responseMessage1 = client.PutAsync("EditDiscount?id=", content);
+            responseMessage1.Wait();
+            var result1 = responseMessage1.Result;
             return RedirectToAction("/Business");
         }
         public ActionResult DeleteDiscount(string id)
