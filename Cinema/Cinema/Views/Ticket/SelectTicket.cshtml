@@ -32,13 +32,13 @@
             </div>
         </div>
         <div class="ticket-select">
-            <h5 class="pt-3">Nhập mã giảm giá (nếu có)</h5>
+            @*<h5 class="pt-3">Nhập mã giảm giá (nếu có)</h5>
             <form class="voucher-form">
                 <input type="text" id="voucher" placeholder="Nhập mã" />
                 <input type="button" onclick="checkvoucher()" value="Thêm mã" class="btn btn-dark" />
             </form>
             <p class="text-danger" id="checkvc_alert"></p>
-            <p class="text-success" id="checkvc_success"></p>
+            <p class="text-success" id="checkvc_success"></p>*@
             <div class="d-flex text-base-color my-3">
                 <h5 class="text-bold" style="flex: 4">Chọn vé</h5>
                 <h5 class="text-bold" style="flex: 3">Giá vé</h5>
@@ -109,7 +109,7 @@
         }
         function showtime2() {
             if (ticket.length != 0) {
-                $.get('/Ticket/SelectSeat', $.param({ data: ticket, vc: voucher }, true), function (data) {
+                $.get('/Ticket/SelectSeat', $.param({ data: ticket }, true), function (data) {
                     $('#1').hide();
                     $('.modal-backdrop').hide();
                     $('#SelectSeat').html(data);
