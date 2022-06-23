@@ -13,7 +13,7 @@ namespace Cinema.Controllers
 {
     public class BookingController : Controller
     {
-        public ActionResult Booking(string name, string location)
+        public ActionResult Booking(string name, string location, string dayx)
         {
             if (Session["email"] != null)
             {
@@ -25,7 +25,7 @@ namespace Cinema.Controllers
             /*Call GetCurrentFilm API*/
             List<JObject> listMovie = new List<JObject>(9999);
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://localhost:8085/api/Booking/");
+            client.BaseAddress = new Uri("http://localhost:8085/api/BookingAPI/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
@@ -49,7 +49,7 @@ namespace Cinema.Controllers
             /*Call GetLocationInfo API*/
             List<JObject> listLC = new List<JObject>(9999);
             HttpClient client1 = new HttpClient();
-            client1.BaseAddress = new Uri("http://localhost:8085/api/PublicAPI/");
+            client1.BaseAddress = new Uri("http://localhost:8085/api/HomepageAPI/");
             client1.DefaultRequestHeaders.Accept.Clear();
             client1.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
@@ -69,18 +69,36 @@ namespace Cinema.Controllers
                 }
                 ViewBag.LC = listLC;
             }
-
+            List<string> AllDay = new List<string>();
+            List<string> Now = new List<string>();
+            AllDay.Add("2021-10-25");
+            AllDay.Add("2021-10-26");
+            AllDay.Add("2021-10-27");
+            AllDay.Add("2021-10-28");
+            AllDay.Add("2021-10-29");
+            AllDay.Add("2021-10-30");
+            AllDay.Add("2021-10-31");
+            ViewBag.AllDay = AllDay;
+            Now.Add("23/6/2022");
+            Now.Add("24/6/2022");
+            Now.Add("25/6/2022");
+            Now.Add("26/6/2022");
+            Now.Add("27/6/2022");
+            Now.Add("28/6/2022");
+            Now.Add("29/6/2022");
+            
+            ViewBag.Now = Now;
             if (location == "all")
             {
                 /*Call GetListCinemaFromFilm API*/
                 List<JObject> listcine = new List<JObject>(9999);
                 HttpClient client2 = new HttpClient();
-                client2.BaseAddress = new Uri("http://localhost:8085/api/Booking/");
+                client2.BaseAddress = new Uri("http://localhost:8085/api/BookingAPI/");
                 client2.DefaultRequestHeaders.Accept.Clear();
                 client2.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
 
-                responseMessage = client2.GetAsync("GetListCinemaFromFilm?name=" + name + "&date=2021-10-25");
+                responseMessage = client2.GetAsync("GetListCinemaFromFilm?MovieName=" + name + "&date=" + dayx);
                 responseMessage.Wait();
 
                 result = responseMessage.Result;
@@ -103,12 +121,12 @@ namespace Cinema.Controllers
                 /*Call GetListCinemaFromFilm API*/
                 List<JObject> listcine = new List<JObject>(9999);
                 HttpClient client2 = new HttpClient();
-                client2.BaseAddress = new Uri("http://localhost:8085/api/Booking/");
+                client2.BaseAddress = new Uri("http://localhost:8085/api/BookingAPI/");
                 client2.DefaultRequestHeaders.Accept.Clear();
                 client2.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
 
-                responseMessage = client2.GetAsync("GetListCinemaFromFilmAndLocation?name=" + name + "&date=2021-10-25&location=" + location);
+                responseMessage = client2.GetAsync("GetListCinemaFromFilmAndLocation?MovieName=" + name +"&Location=" + location + "&date=" + dayx);
                 responseMessage.Wait();
 
                 result = responseMessage.Result;
@@ -130,12 +148,12 @@ namespace Cinema.Controllers
                 /*Call GetList2DRoomFromFilm API*/
                 List<JObject> list2d = new List<JObject>(9999);
                 HttpClient client5 = new HttpClient();
-                client5.BaseAddress = new Uri("http://localhost:8085/api/CinemaAPI/");
+                client5.BaseAddress = new Uri("http://localhost:8085/api/BookingAPI/");
                 client5.DefaultRequestHeaders.Accept.Clear();
                 client5.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
 
-                responseMessage = client5.GetAsync("GetList2DRoomFromFilm?cinema=" + item.CinemaName + "&movie=" + name + "&daytime=2021-10-25");
+                responseMessage = client5.GetAsync("GetList2DRoomFromFilm?CinemaName=" + item.CinemaName + "&MovieName=" + name + "&date=" + dayx);
                 responseMessage.Wait();
 
                 result = responseMessage.Result;
@@ -163,7 +181,7 @@ namespace Cinema.Controllers
                     client6.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
-                    responseMessage = client6.GetAsync("QuantityLeft?movie=" + name + "&room=" + item1.roomid + "&showtime=" + item1.showtime);
+                    responseMessage = client6.GetAsync("QuantityLeft?MovieName=" + name + "&RoomID=" + item1.roomid + "&ShowTime=" + item1.showtime);
                     responseMessage.Wait();
 
                     result = responseMessage.Result;
@@ -181,12 +199,12 @@ namespace Cinema.Controllers
                 /*Call GetListFilmFromCinema API*/
                 List<JObject> list3d = new List<JObject>(9999);
                 HttpClient client7 = new HttpClient();
-                client7.BaseAddress = new Uri("http://localhost:8085/api/CinemaAPI/");
+                client7.BaseAddress = new Uri("http://localhost:8085/api/BookingAPI/");
                 client7.DefaultRequestHeaders.Accept.Clear();
                 client7.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
 
-                responseMessage = client7.GetAsync("GetList3DRoomFromFilm?cinema=" + item.CinemaName + "&movie=" + name + "&daytime=2021-10-25");
+                responseMessage = client7.GetAsync("GetList3DRoomFromFilm?CinemaName=" + item.CinemaName + "&MovieName=" + name + "&date=" + dayx);
                 responseMessage.Wait();
 
                 result = responseMessage.Result;
@@ -209,12 +227,12 @@ namespace Cinema.Controllers
                     /*Call QuantityLeft API*/
                     List<JObject> left = new List<JObject>(9999);
                     HttpClient client8 = new HttpClient();
-                    client8.BaseAddress = new Uri("http://localhost:8085/api/CinemaAPI/");
+                    client8.BaseAddress = new Uri("http://localhost:8085/api/BookingAPI/");
                     client8.DefaultRequestHeaders.Accept.Clear();
                     client8.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
-                    responseMessage = client8.GetAsync("QuantityLeft?movie=" + name + "&room=" + item1.roomid + "&showtime=" + item1.showtime);
+                    responseMessage = client8.GetAsync("QuantityLeft?MovieName=" + name + "&RoomID=" + item1.roomid + "&ShowTime=" + item1.showtime);
                     responseMessage.Wait();
 
                     result = responseMessage.Result;
@@ -238,12 +256,12 @@ namespace Cinema.Controllers
                 /*Call GetListFilmFromCinema API*/
                 List<JObject> list4d = new List<JObject>(9999);
                 HttpClient client9 = new HttpClient();
-                client9.BaseAddress = new Uri("http://localhost:8085/api/CinemaAPI/");
+                client9.BaseAddress = new Uri("http://localhost:8085/api/BookingAPI/");
                 client9.DefaultRequestHeaders.Accept.Clear();
                 client9.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
 
-                responseMessage = client9.GetAsync("GetList4DRoomFromFilm?cinema=" + item.CinemaName + "&movie=" + name + "&daytime=2021-10-25");
+                responseMessage = client9.GetAsync("GetList4DRoomFromFilm?CinemaName=" + item.CinemaName + "&MovieName=" + name + "&date="+ dayx);
                 responseMessage.Wait();
 
                 result = responseMessage.Result;
@@ -271,7 +289,7 @@ namespace Cinema.Controllers
                     client10.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
-                    responseMessage = client10.GetAsync("QuantityLeft?movie=" + name + "&room=" + item1.roomid + "&showtime=" + item1.showtime);
+                    responseMessage = client10.GetAsync("QuantityLeft?MovieName=" + name + "&RoomID=" + item1.roomid + "&ShowTime=" + item1.showtime);
                     responseMessage.Wait();
 
                     result = responseMessage.Result;
@@ -295,7 +313,7 @@ namespace Cinema.Controllers
             }
             ViewBag.check = name;
             ViewBag.location = location;
-
+            ViewBag.day = dayx;
             return View();
         }
     }

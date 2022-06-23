@@ -42,7 +42,7 @@ namespace Cinema.Controllers
             /*Call GetLocationInfo API*/
             List<JObject> listLocation = new List<JObject>(9999);
             HttpClient client1 = new HttpClient();
-            client1.BaseAddress = new Uri("http://localhost:8085/api/PublicAPI/");
+            client1.BaseAddress = new Uri("http://localhost:8085/api/HomepageAPI/");
             client1.DefaultRequestHeaders.Accept.Clear();
             client1.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
@@ -65,7 +65,7 @@ namespace Cinema.Controllers
             /*Call GetListSlide API*/
             List<JObject> listSlide = new List<JObject>(9999);
             HttpClient client2 = new HttpClient();
-            client2.BaseAddress = new Uri("http://localhost:8085/api/PublicAPI/");
+            client2.BaseAddress = new Uri("http://localhost:8085/api/HomepageAPI/");
             client2.DefaultRequestHeaders.Accept.Clear();
             client2.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
@@ -88,7 +88,7 @@ namespace Cinema.Controllers
             /*Call GetReview API*/
             List<JObject> listReview = new List<JObject>(9999);
             HttpClient client3 = new HttpClient();
-            client3.BaseAddress = new Uri("http://localhost:8085/api/Cinematic/");
+            client3.BaseAddress = new Uri("http://localhost:8085/api/CinematicAPI/");
             client3.DefaultRequestHeaders.Accept.Clear();
             client3.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
@@ -111,7 +111,7 @@ namespace Cinema.Controllers
             /*Call GetBlog API*/
             List<JObject> listBlog = new List<JObject>(9999);
             HttpClient client4 = new HttpClient();
-            client4.BaseAddress = new Uri("http://localhost:8085/api/Cinematic/");
+            client4.BaseAddress = new Uri("http://localhost:8085/api/CinematicAPI/");
             client4.DefaultRequestHeaders.Accept.Clear();
             client4.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
@@ -134,7 +134,7 @@ namespace Cinema.Controllers
             /*Call GetSaleNew API*/
             List<JObject> listSale = new List<JObject>(9999);
             HttpClient client5 = new HttpClient();
-            client5.BaseAddress = new Uri("http://localhost:8085/api/Cinematic/");
+            client5.BaseAddress = new Uri("http://localhost:8085/api/CinematicAPI/");
             client5.DefaultRequestHeaders.Accept.Clear();
             client5.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));

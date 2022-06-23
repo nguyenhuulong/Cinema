@@ -69,7 +69,7 @@ namespace Cinema.Controllers
             /*Call CurMovie API*/
             List<JObject> listCurMovie = new List<JObject>(9999);
             HttpClient client1 = new HttpClient();
-            client1.BaseAddress = new Uri("http://localhost:8085/api/Movie/");
+            client1.BaseAddress = new Uri("http://localhost:8085/api/MovieAPI/");
             client1.DefaultRequestHeaders.Accept.Clear();
             client1.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
@@ -89,6 +89,7 @@ namespace Cinema.Controllers
                 }
                 ViewBag.current = listCurMovie;
             }
+            ViewBag.date = "2021-10-25";
             return View();
         }
         public ActionResult MovieFuture()
@@ -102,7 +103,7 @@ namespace Cinema.Controllers
             /*Call CurMovie API*/
             List<JObject> listCurMovie = new List<JObject>(9999);
             HttpClient client1 = new HttpClient();
-            client1.BaseAddress = new Uri("http://localhost:8085/api/Movie/");
+            client1.BaseAddress = new Uri("http://localhost:8085/api/MovieAPI/");
             client1.DefaultRequestHeaders.Accept.Clear();
             client1.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));

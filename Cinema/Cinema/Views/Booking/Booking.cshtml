@@ -12,10 +12,10 @@
             {
                 if (item.MovieName == ViewBag.check)
                 {
-                    <option selected value="@Url.Action("Booking","Booking", new { name = item.MovieName, location = ViewBag.location })">@item.MovieName</option>
+                    <option selected value="@Url.Action("Booking","Booking", new { name = item.MovieName, location = ViewBag.location, dayx = ViewBag.day })">@item.MovieName</option>
                     continue;
                 }
-                <option value="@Url.Action("Booking", "Booking", new { name = item.MovieName,location= ViewBag.location })">@item.MovieName</option>
+                <option value="@Url.Action("Booking", "Booking", new { name = item.MovieName,location= ViewBag.location, dayx = ViewBag.day })">@item.MovieName</option>
             }
         </select>
         <ul class="list-day">
@@ -47,22 +47,22 @@
                 <input type="radio" id="day-6x" name="week-day" onclick="displayRadioValue()" />
                 <label id="day-6" for="day-6x"></label>
             </li>
-            <select class="select-box" onchange="location.href = this.value">
+            <select class="select-box ml-5" onchange="location.href = this.value">
                 @if (ViewBag.location == "all")
                 {
-                    <option selected value="@Url.Action("Booking","Booking", new { name = ViewBag.check,location="all" })">Tất cả tỉnh/ thành phố</option>
+                    <option selected value="@Url.Action("Booking","Booking", new { name = ViewBag.check,location="all", dayx = ViewBag.day })">Tất cả tỉnh/ thành phố</option>
                 }
                 else {
-                    <option value="@Url.Action("Booking","Booking", new { name = ViewBag.check,location="all" })">Tất cả tỉnh/ thành phố</option>
+                    <option value="@Url.Action("Booking","Booking", new { name = ViewBag.check,location="all", dayx= ViewBag.day })">Tất cả tỉnh/ thành phố</option>
                 }
                 @foreach (var item in ViewBag.LC)
                 {
                     if (item.LocationName == ViewBag.location)
                     {
-                        <option selected value="@Url.Action("Booking","Booking", new { name = ViewBag.check, location = item.LocationName })">@item.LocationName</option>
+                        <option selected value="@Url.Action("Booking","Booking", new { name = ViewBag.check, location = item.LocationName, dayx =ViewBag.day })">@item.LocationName</option>
                         continue;
                     }
-                    <option value="@Url.Action("Booking", "Booking", new { name = ViewBag.check, location = item.LocationName })">@item.LocationName</option>
+                    <option value="@Url.Action("Booking", "Booking", new { name = ViewBag.check, location = item.LocationName, dayx = ViewBag.day })">@item.LocationName</option>
                 }
             </select>
             <select class="select-box ml-4" onchange="Filter()" id="screentype">
@@ -70,6 +70,19 @@
                 <option value="3D">3D</option>
                 <option value="4DX">4DX</option>
                 <option value="All" selected>Tất cả các loại màn hình chiếu</option>
+            </select>
+            <select class="select-box ml-4" onchange="location.href = this.value">
+                @foreach (var item in ViewBag.AllDay)
+                {
+                    if (item.ToString() == ViewBag.day)
+                    {
+                        <option selected value="@Url.Action("Booking","Booking", new { name = ViewBag.check, location = ViewBag.location, dayx =item.ToString() })">@ViewBag.Now[ViewBag.Allday.IndexOf(item)]</option>
+                        continue;
+                    }
+            <option value="@Url.Action("Booking", "Booking", new { name = ViewBag.check, location = ViewBag.location, dayx = item.ToString() })">@ViewBag.Now[ViewBag.Allday.IndexOf(item)]</option>
+                }
+                
+
             </select>
         </ul>
         <h5 id="day-info"></h5>

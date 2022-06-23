@@ -27,7 +27,7 @@ namespace Cinema.Controllers
             /*Call GetLocationInfo API*/
             List<JObject> listLocation = new List<JObject>(9999);
             HttpClient client1 = new HttpClient();
-            client1.BaseAddress = new Uri("http://localhost:8085/api/PublicAPI/");
+            client1.BaseAddress = new Uri("http://localhost:8085/api/HomepageAPI/");
             client1.DefaultRequestHeaders.Accept.Clear();
             client1.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));

@@ -11,6 +11,8 @@ using CinemaAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
 using System.Web.Http.Description;
+using NPOI.SS.Util;
+using System.Globalization;
 
 namespace CinemaAPI.Controllers
 {
@@ -18,12 +20,24 @@ namespace CinemaAPI.Controllers
     public class BookingAPIController : ApiController
     {
         CinemaDB db = new CinemaDB();
+        [System.Web.Http.HttpGet]
+        [ResponseType(typeof(MOVIE))]
+        public async Task<IHttpActionResult> GetCurrentFilm()
+        {
+            var mOVIE = db.Database.SqlQuery<MOVIE>("exec GetCurrentFilm");
+            await mOVIE.ToListAsync();
+            if (mOVIE == null)
+            {
+                return NotFound();
+            }
+            return Json(mOVIE);
+        }
         //GetListCinemaFromFilm
         [System.Web.Http.HttpGet]
         [Microsoft.AspNetCore.Mvc.Route("{MovieName}")]
-        public async Task<IHttpActionResult> GetListCinemaFromFilm([FromRoute] string MovieName)
+        public async Task<IHttpActionResult> GetListCinemaFromFilm([FromRoute] string MovieName, [FromRoute] string date)
         {
-            var cinema = db.Database.SqlQuery<CinemaItem1>($"exec GetListCinemaFromFilm N'{MovieName}', N'2021-10-25'");
+            var cinema = db.Database.SqlQuery<CinemaItem1>($"exec GetListCinemaFromFilm N'{MovieName}', N'{date}'");
             await cinema.ToListAsync();
             if (cinema == null)
             {
@@ -35,9 +49,9 @@ namespace CinemaAPI.Controllers
         //GetListCinemaFromLocation
         [System.Web.Http.HttpGet]
         [Microsoft.AspNetCore.Mvc.Route("{MovieName}")]
-        public async Task<IHttpActionResult> GetListCinemaFromLocation([FromRoute] string Location)
+        public async Task<IHttpActionResult> GetListCinemaFromLocation([FromRoute] string Location, [FromRoute] string date)
         {
-            var cinema = db.Database.SqlQuery<CINEMA>($"exec GetListCinemaFromLocation   N'{Location}', N'2021-10-25'");
+            var cinema = db.Database.SqlQuery<CINEMA>($"exec GetListCinemaFromLocation   N'{Location}', N'{date}'");
             await cinema.ToListAsync();
             if (cinema == null)
             {
@@ -66,9 +80,9 @@ namespace CinemaAPI.Controllers
         //GetListCinemaFromFilmAndLocation
         [System.Web.Http.HttpGet]
         [Microsoft.AspNetCore.Mvc.Route("{MovieName}/{Location}")]
-        public async Task<IHttpActionResult> GetListCinemaFromFilmAndLocation([FromRoute] string MovieName, [FromRoute] string Location)
+        public async Task<IHttpActionResult> GetListCinemaFromFilmAndLocation([FromRoute] string MovieName, [FromRoute] string Location, [FromRoute] string date)
         {
-            var cinema = db.Database.SqlQuery<CinemaItem1>($"exec GetListCinemaFromFilmAndLocation N'{MovieName}', N'2021-10-25', N'{Location}'");
+            var cinema = db.Database.SqlQuery<CinemaItem1>($"exec GetListCinemaFromFilmAndLocation N'{MovieName}', N'{date}', N'{Location}'");
             await cinema.ToListAsync();
             if (cinema == null)
             {
@@ -83,7 +97,7 @@ namespace CinemaAPI.Controllers
 
         [System.Web.Http.HttpGet]
         [Microsoft.AspNetCore.Mvc.Route("{MovieName}/{RoomID}/{ShowTime}")]
-        public async Task<IHttpActionResult> QuntityLeft([FromRoute] string MovieName, [FromRoute] string RoomID, [FromRoute] string ShowTime)
+        public async Task<IHttpActionResult> QuantityLeft([FromRoute] string MovieName, [FromRoute] string RoomID, [FromRoute] string ShowTime)
         {
             var cinema = db.Database.SqlQuery<int>($"exec QuantityLeft N'{MovieName}', N'{RoomID}', N'{ShowTime}'");
             await cinema.ToListAsync();
@@ -96,10 +110,11 @@ namespace CinemaAPI.Controllers
         }
         //GetList2DRoom
         [System.Web.Http.HttpGet]
-        [Microsoft.AspNetCore.Mvc.Route("{CinemaName}/{MovieName}")]
-        public async Task<IHttpActionResult> GetList2DRoomFromFilm([FromRoute] string CinemaName, [FromRoute] string MovieName)
+        [Microsoft.AspNetCore.Mvc.Route("{CinemaName}/{MovieName}/{date}")]
+        public async Task<IHttpActionResult> GetList2DRoomFromFilm([FromRoute] string CinemaName, [FromRoute] string MovieName, [FromRoute] string date)
         {
-            var cinema = db.Database.SqlQuery<ShowTime>($"exec GetList2DRoomFromFilm N'{CinemaName}', N'2021-10-25', N'{MovieName}'");
+         
+            var cinema = db.Database.SqlQuery<ShowTime>($"exec GetList2DRoomFromFilm N'{CinemaName}', N'{MovieName}', N'{date}'");
             await cinema.ToListAsync();
             if (cinema == null)
             {
@@ -111,10 +126,10 @@ namespace CinemaAPI.Controllers
 
         //GetList3DRoom
         [System.Web.Http.HttpGet]
-        [Microsoft.AspNetCore.Mvc.Route("{CinemaName}/{MovieName}")]
-        public async Task<IHttpActionResult> GetList3DRoomFromFilm([FromRoute] string CinemaName, [FromRoute] string MovieName)
+        [Microsoft.AspNetCore.Mvc.Route("{CinemaName}/{MovieName}/{date}")]
+        public async Task<IHttpActionResult> GetList3DRoomFromFilm([FromRoute] string CinemaName, [FromRoute] string MovieName, [FromRoute] string date)
         {
-            var cinema = db.Database.SqlQuery<ShowTime>($"exec GetList3DRoomFromFilm N'{CinemaName}', N'2021-10-25', N'{MovieName}'");
+            var cinema = db.Database.SqlQuery<ShowTime>($"exec GetList3DRoomFromFilm N'{CinemaName}', N'{MovieName}', N'{date}'");
             await cinema.ToListAsync();
             if (cinema == null)
             {
@@ -127,10 +142,10 @@ namespace CinemaAPI.Controllers
         //GetList4DRoom
 
         [System.Web.Http.HttpGet]
-        [Microsoft.AspNetCore.Mvc.Route("{CinemaName}/{MovieName}")]
-        public async Task<IHttpActionResult> GetList4DRoomFromFilm([FromRoute] string CinemaName, [FromRoute] string MovieName)
+        [Microsoft.AspNetCore.Mvc.Route("{CinemaName}/{MovieName}/{date}")]
+        public async Task<IHttpActionResult> GetList4DRoomFromFilm([FromRoute] string CinemaName, [FromRoute] string MovieName, [FromRoute] string date)
         {
-            var cinema = db.Database.SqlQuery<ShowTime>($"exec GetList4DRoomFromFilm N'{CinemaName}', N'2021-10-25', N'{MovieName}'");
+            var cinema = db.Database.SqlQuery<ShowTime>($"exec GetList4DRoomFromFilm N'{CinemaName}', N'{MovieName}', N'{date}'");
             await cinema.ToListAsync();
             if (cinema == null)
             {

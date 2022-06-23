@@ -16,7 +16,7 @@ namespace CinemaAPI.Controllers
     public class CinemaAPIController : ApiController
     {
         private CinemaDB db = new CinemaDB();
-
+       
         [HttpGet]
         [ResponseType(typeof(CINEMA))]
         public async Task<IHttpActionResult> GetListCinemaFromName(string cinema)

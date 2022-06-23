@@ -17,19 +17,7 @@ namespace CinemaAPI.Controllers
     {
         private CinemaDB db = new CinemaDB();
 
-        [HttpGet]
-        [ResponseType(typeof(CINEMA_LOCATION))]
-        public async Task<IHttpActionResult> GetLocationInfo()
-        {
-            var locations = db.Database.SqlQuery<CINEMA_LOCATION>("exec GetLocationInfo");
-            await locations.ToListAsync();
-            if (locations == null)
-            {
-                return NotFound();
-            }
-
-            return Json(locations);
-        }
+        
 
         [HttpGet]
         [ResponseType(typeof(AD))]

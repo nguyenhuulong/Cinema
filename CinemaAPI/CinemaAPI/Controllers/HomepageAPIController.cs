@@ -8,6 +8,7 @@ using CinemaAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Web.Http.Description;
 using System.Web.Http;
+using System.Data.Entity;
 
 namespace CinemaAPI.Controllers
 {
@@ -59,12 +60,19 @@ namespace CinemaAPI.Controllers
             return Json(result);
         }
         //GetLocation
-        public List<CINEMA_LOCATION> GetLocation()
+        [System.Web.Http.HttpGet]
+        [ResponseType(typeof(CINEMA_LOCATION))]
+        public async Task<IHttpActionResult> GetLocationInfo()
         {
-            return db.CINEMA_LOCATION.ToList();
+            var locations = db.Database.SqlQuery<CINEMA_LOCATION>("exec GetLocationInfo");
+            await locations.ToListAsync();
+            if (locations == null)
+            {
+                return NotFound();
+            }
+
+            return Json(locations);
         }
-
-
         //GetListSlide
         [System.Web.Http.HttpGet]
         [ResponseType(typeof(AD))]
