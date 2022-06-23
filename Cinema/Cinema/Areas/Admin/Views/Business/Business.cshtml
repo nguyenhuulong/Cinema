@@ -102,7 +102,7 @@
                 <th>@admin.ServiceID</th>
                 <th>@admin.ServiceName</th>
                 <th>@admin.ServicePrice</th>
-                <th><a class="btn btn-edit p-2 mr-3" href="/Admin/Business/EditServiceView?id=@admin.ServiceID">Sửa</a><a class="btn btn-del p-2 mr-3" href="/Admin/Business/DeleteService?id=@admin.ServiceID">Xóa</a></th>
+                <th><a class="btn btn-edit p-2 mr-3" href="/Admin/Business/EditServiceView?id=@admin.ServiceID.ToString()">Sửa</a><a class="btn btn-del p-2 mr-3" href="/Admin/Business/DeleteService?id=@admin.ServiceID.ToString()">Xóa</a></th>
             </tr>
         }
     </tbody>
@@ -159,7 +159,7 @@
                     <th>@admin.CodeID</th>
                     <th>@admin.DiscountNumber</th>
                     <th>@admin.State</th>
-                    <th><a class="btn btn-edit p-2 mr-3" href="/Admin/Business/EditDiscountView?id=@admin.CodeID">Sửa</a><a class="btn btn-del p-2 mr-3" href="/Admin/Business/DeleteDiscount?id=@admin.CodeID">Xóa</a></th>
+                    <th><a class="btn btn-edit p-2 mr-3" href="/Admin/Business/EditDiscountView?id=@admin.CodeID.ToString()">Sửa</a><a class="btn btn-del p-2 mr-3" href="/Admin/Business/DeleteDiscount?id=@admin.CodeID.ToString()">Xóa</a></th>
                 </tr>
             }
         </tbody>

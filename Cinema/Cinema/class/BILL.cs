@@ -6,7 +6,7 @@ using System;
     using System.ComponentModel.DataAnnotations.Schema;
  
 
-    [Table("BILL")]
+    
     public partial class BILL
     {
         [StringLength(10)]
@@ -27,7 +27,7 @@ using System;
         [Column(TypeName = "date")]
         public DateTime? PayDay { get; set; }
 
-        public virtual DISCOUNT_CODE DISCOUNT_CODE { get; set; }
+        //public virtual DISCOUNT_CODE DISCOUNT_CODE { get; set; }
 
         public virtual USER_ACCOUNT USER_ACCOUNT { get; set; }
     }

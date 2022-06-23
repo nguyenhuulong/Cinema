@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -187,77 +188,29 @@ namespace Cinema.Areas.Admin.Controllers
             string ID = Request.Form["ticket_type1"];
             string name = Request.Form["tickettype_name"];
             string price = Request.Form["tickettype_price"];
-            List<JObject> ticketType = new List<JObject>(9999);
+            JObject ticketType = new JObject();
+            ticketType["TickeTypetName"] = name;
+            ticketType["Price"] = price;
+            var content = new StringContent(JsonConvert.SerializeObject(ticketType), System.Text.Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://localhost:8085/api/Bussiness/"); // ???
+            client.BaseAddress = new Uri("http://localhost:8085/api/Business/"); // ???
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var responseMessage = client.GetAsync("GetTicketType??id=" + ID); /////////////////// truyen bien 
+            var responseMessage = client.PostAsync("AddTicketType??id=" + ID, content); /////////////////// truyen bien 
             responseMessage.Wait();
             var result = responseMessage.Result;
-            if (result.IsSuccessStatusCode)
-            {
-                var readTask = result.Content.ReadAsStringAsync();
-                readTask.Wait();
-                JArray listMovieJA = JArray.Parse(readTask.Result);
-                foreach (JObject o in listMovieJA.Children<JObject>())
-                {
-                    ticketType.Add(o);
-                }
-                ViewBag.ticketType = ticketType;
-            }
-
+            return RedirectToAction("/Business");
             
-
-            if (ticketType.Count() > 0)
-            {
-                ViewBag.error = "Mã đã đã tồn tại";
-                return View("~/Areas/Admin/Views/Business/AddTicketTypeView.cshtml");
-            }
-            else
-            {
-                //TICKET_TYPE x = new TICKET_TYPE();
-                //x.TicketTypeID = ID;
-                //x.TicketTypeName = name;
-                //x.Price = price;
-                //db.TICKET_TYPE.Add(x);
-                //db.SaveChanges();
-                //List<JObject> ticketType = new List<JObject>(9999);
-                //HttpClient client = new HttpClient();
-                //client.BaseAddress = new Uri("http://localhost:8085/api/Bussiness/"); // ???
-                //client.DefaultRequestHeaders.Accept.Clear();
-                //client.DefaultRequestHeaders.Accept.Add(
-                //    new MediaTypeWithQualityHeaderValue("application/json"));
-
-                //var responseMessage = client.GetAsync("GetTicketType??id=" + ID); /////////////////// truyen bien 
-                //responseMessage.Wait();
-                //var result = responseMessage.Result;
-                //if (result.IsSuccessStatusCode)
-                //{
-                //    var readTask = result.Content.ReadAsStringAsync();
-                //    readTask.Wait();
-                //    JArray listMovieJA = JArray.Parse(readTask.Result);
-                //    foreach (JObject o in listMovieJA.Children<JObject>())
-                //    {
-                //        ticketType.Add(o);
-                //    }
-                //    ViewBag.ticketType = ticketType;
-                //}
-                return RedirectToAction("/Business");
-            }
 
         }
         [HttpGet]
         public ActionResult EditTicketTypeView(string id)
         {
-            //ViewBag.ticket = db.TICKET_TYPE.Find(id);
-            //ViewBag.tickettypeID = id;
-
             List<JObject> ticket = new List<JObject>(9999);
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://localhost:8085/api/Bussiness/"); // ???
+            client.BaseAddress = new Uri("http://localhost:8085/api/Business/"); // ???
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
@@ -281,33 +234,34 @@ namespace Cinema.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult EditTicketType(string id)
         {
-            TICKET_TYPE t = new TICKET_TYPE();
             string name = Request.Form["tickettype_name"];
             string price = Request.Form["tickettype_price"];
-            t.TicketTypeName = name;
-            t.Price = price;
-            //HttpClient client = new HttpClient();
-            //client.BaseAddress = new Uri("http://localhost:8085/api/Bussiness/"); // ???
-            //client.DefaultRequestHeaders.Accept.Clear();
-            //client.DefaultRequestHeaders.Accept.Add(
-            //    new MediaTypeWithQualityHeaderValue("application/json"));
+            JObject ticketType = new JObject();
+            ticketType["TickeTypetName"] = name;
+            ticketType["Price"] = price;
+            var content = new StringContent(JsonConvert.SerializeObject(ticketType), System.Text.Encoding.UTF8, "application/json");
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://localhost:8085/api/Business/"); // ???
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
 
-            //var responseMessage = client.GetAsync("PutTicketType??id=" + id, t); /////////////////// truyen bien 
-            //responseMessage.Wait();
-            //var result = responseMessage.Result;
-            //if (result.IsSuccessStatusCode)
-            //{
-            //    var readTask = result.Content.ReadAsStringAsync();
-            //    readTask.Wait();
-            //}
-            var request = new RestRequest($"api/Business/PutTICKET/{id}", Method.Put).AddObject(t);
-            _client.Execute(request);
+            var responseMessage = client.PutAsync("EditTicketType??id=" + id, content); /////////////////// truyen bien 
+            responseMessage.Wait();
+            var result = responseMessage.Result;
+            return View();
             return RedirectToAction("/Business");
         }
         public ActionResult DeleteTicketType(string id)
         {
-            var request = new RestRequest($"api/Business/DeleteTICKET/{id}", Method.Delete);
-            _client.Execute(request);
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://localhost:8085/api/Business/"); // ???
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var responseMessage = client.DeleteAsync("DeleteTicketType??id=" + id); /////////////////// truyen bien 
+            responseMessage.Wait();
             return RedirectToAction("/Business");
         }
 
@@ -318,61 +272,98 @@ namespace Cinema.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult AddService()
         {
-            SERVICE s = new SERVICE();
             string ID = Request.Form["serviceID"];
             string name = Request.Form["service_name"];
             string price = Request.Form["service_price"];
-            s.ServiceID = ID;
-            s.ServiceName = name;
-            s.ServicePrice = price;
-            var request = new RestRequest($"api/Business/PostService/", Method.Post).AddObject(s);
-            _client.Execute(request);
+            JObject service = new JObject();
+            service["ServiceName"] = name;
+            service["ServicePrice"] = price;
+            var content = new StringContent(JsonConvert.SerializeObject(service), System.Text.Encoding.UTF8, "application/json");
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://localhost:8085/api/Business/"); // ???
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+            var responseMessage1 = client.PostAsync("PostService?id=" + ID, content);
+            responseMessage1.Wait();
+            var result1 = responseMessage1.Result;
             return RedirectToAction("/Business");
         }
         [HttpGet]
         public ActionResult EditServiceView(string id)
         {
 
-            List<JObject> service = new List<JObject>(9999);
+            Object service = new Object();
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://localhost:8085/api/Bussiness/"); // ???
+            client.BaseAddress = new Uri("http://localhost:8085/api/Business/"); // ???
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var responseMessage = client.GetAsync("GetService??id=" + id); /////////////////// truyen bien 
+            var responseMessage = client.GetAsync("GetService?id=" + id); /////////////////// truyen bien 
             responseMessage.Wait();
             var result = responseMessage.Result;
             if (result.IsSuccessStatusCode)
             {
                 var readTask = result.Content.ReadAsStringAsync();
                 readTask.Wait();
-                JArray listMovieJA = JArray.Parse(readTask.Result);
-                foreach (JObject o in listMovieJA.Children<JObject>())
-                {
-                    service.Add(o);
-                }
-                ViewBag.service = service[0];
+                ViewBag.service = JObject.Parse(readTask.Result);
             }
             ViewBag.ServiceID = id;
             return View();
         }
-        [HttpPost]
+        //[HttpPost]
+        //public ActionResult EditService(string id)
+        //{
+        //    SERVICE s = new SERVICE();
+        //    string name = Request.Form["service_name"];
+        //    string price = Request.Form["service_price"];
+        //    s.ServiceName = name;
+        //    s.ServicePrice = price;
+        //    var request = new RestRequest($"api/Business/PutService/{id}", Method.Put).AddObject(s);
+        //    _client.Execute(request);
+        //    return RedirectToAction("/Business");
+        //}
+        [HttpPut]
         public ActionResult EditService(string id)
+        
+            {
+                JObject service = new JObject();
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri("http://localhost:8085/api/Business/"); // ???
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(
+                    new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var responseMessage = client.GetAsync("GetService??id=" + id);
+                responseMessage.Wait();
+                var result = responseMessage.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsStringAsync();
+                    readTask.Wait();
+                    service = JObject.Parse(readTask.Result);
+                }
+                string name = Request.Form["service_name"];
+                string price = Request.Form["service_price"];
+                service["ServiceName"] = name;
+                service["ServicePrice"] = price;
+                var content = new StringContent(JsonConvert.SerializeObject(service), System.Text.Encoding.UTF8, "application/json");
+                var responseMessage1 = client.PutAsync("EditService/" + id, content);
+                responseMessage1.Wait();
+                var result1 = responseMessage.Result;
+                return RedirectToAction("/Business");
+            }
+            public ActionResult DeleteService(string id)
         {
-            SERVICE s = new SERVICE();
-            string name = Request.Form["service_name"];
-            string price = Request.Form["service_price"];
-            s.ServiceName = name;
-            s.ServicePrice = price;
-            var request = new RestRequest($"api/Business/PutService/{id}", Method.Put).AddObject(s);
-            _client.Execute(request);
-            return RedirectToAction("/Business");
-        }
-        public ActionResult DeleteService(string id)
-        {
-            var request = new RestRequest($"api/Business/DeleteService/{id}", Method.Delete);
-            _client.Execute(request);
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://localhost:8085/api/Business/"); // ???
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var responseMessage = client.DeleteAsync("DeleteService??id=" + id); /////////////////// truyen bien 
+            responseMessage.Wait();
             return RedirectToAction("/Business");
         }
 
@@ -453,8 +444,14 @@ namespace Cinema.Areas.Admin.Controllers
         }
         public ActionResult DeleteDiscount(string id)
         {
-            var request = new RestRequest($"api/Business/DeleteDiscount/{id}", Method.Delete);
-            _client.Execute(request);
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://localhost:8085/api/Business/"); // ???
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var responseMessage = client.DeleteAsync("DeleteDiscount?id=" + id); /////////////////// truyen bien 
+            responseMessage.Wait();
             return RedirectToAction("/Business");
         }
 
