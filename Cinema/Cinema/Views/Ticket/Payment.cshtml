@@ -1,0 +1,115 @@
+﻿<div class="modal-dialog modal-xl modal-dialog-scrollable" role="document" id="payment">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="booking-2-header d-flex py-3 col-12">
+                <div class="col-3">
+                    <h5>Xin chào, Hường</h5>
+                    <h6>Không phải bạn? <a href="#" class="text-base-color" style="text-decoration: underline;">Đăng xuất</a></h6>
+                </div>
+                <h4 class="col-7">
+                    <span class="mx-1">ĐẶT VÉ</span>
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    <span class="mx-1">CHỌN CHỖ</span>
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    <span class="mx-1">DỊCH VỤ</span>
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    <span class="text-select mx-1">THANH TOÁN</span>
+                </h4>
+                <div class="booking-clock col-2">
+                    <h6 class="text-bold">Thời gian còn</h6>
+                    <h5><span>10:00</span></h5>
+                </div>
+            </div>
+            <div class="pre-booking">
+                <div class="pre-info d-flex py-4">
+                    <img src="~/images/movie/poster/@ViewBag.Image" alt="">
+                    <ul>
+                        <h6 class="mb-3"><i class="fa fa-check-circle text-base-color" aria-hidden="true"></i> Bạn đang đặt vé phim: <span>@ViewBag.FilmName (@ViewBag.ScreenType)</span></h6>
+                        <h6 class="mb-3"><i class="fa fa-check-circle text-base-color" aria-hidden="true"></i> Rạp: <span>@ViewBag.CinemaName, @ViewBag.CinemaAddress</span></h6>
+                        <h6 class="mb-3"><i class="fa fa-check-circle text-base-color" aria-hidden="true"></i> Ngày chiếu: <span>@ViewBag.datetime</span></h6>
+                        <h6 class="mb-3"><i class="fa fa-check-circle text-base-color" aria-hidden="true"></i> Giờ chiếu: <span>@ViewBag.showtime </span></h6>
+                    </ul>
+                </div>
+            </div>
+            <div class="payment-container">
+                <h4 class="text-base-color text-center py-3">HÓA ĐƠN</h4>
+                @foreach (var item in ViewBag.arr_ticket)
+                {
+                    <h6 class="py-2">@item.TicketTypeName x @item.TicketNum<span>@item.Price x @item.TicketNum </span></h6>
+                }
+                @if (ViewBag.service != null)
+                {
+                    foreach (var item in ViewBag.service)
+                    {
+                        <h6 class="py-2">@item.ServiceName x @item.ServiceNum<span>@item.ServicePrice x @item.ServiceNum </span></h6>
+                    }
+                }
+                <h6 class="py-2">
+                    Bạn đã đặt ghế :
+                    @foreach (var item in ViewBag.seat_arr)
+                    {
+                        <span class="text-base-color">  @item &nbsp </span>;
+                    }
+                </h6>
+                @if (ViewBag.voucher != null)
+                {
+                    <h6 class="py-2">Bạn đã chọn voucher giảm @ViewBag.voucher.DiscountNumber%</h6>
+                }
+                <div class="container-horizontal-line my-3"></div>
+                <h5>Tổng<span class="text-base-color"> @ViewBag.Money.000 VNĐ</span></h5>
+                <div class="container-horizontal-line my-3"></div>
+                <h5>Phương thức thanh toán</h5>
+                <h6 class="py-2">Sử dụng Thẻ quà tặng</h6>
+                <div class="d-flex justify-content-between">
+                    <input type="text" placeholder="Mã thẻ" class="pl-2" style="width: 70%" />
+                    <input type="submit" value="NHẬP THẺ" class="btn btn-dark" style="width: 25%" />
+                </div>
+                <h6 class="py-2">Hoặc phương thức thanh toán khác</h6>
+                <button class="btn btn-dark btn-block py-2">THÊM CREDIT CARD HOẶC DEBIT CARD</button>
+                <button class="btn btn-light btn-block font-italic py-2">TRẢ BẰNG <i class="fa fa-paypal" aria-hidden="true"></i>Paypal</button>
+                <div class="container-horizontal-line my-3"></div>
+                <div class="pandemic p-4">
+                    <h5 class="text-center">Hãy đảm bảo sự an toàn của bạn</h5>
+                    <p>Đảm bảo sự an toàn của bạn và nhân viên tại rạp chính là sự ưu tiên hàng đầu của chúng tôi. Để làm được điều đó, OREGON Cinema đã tham gia vào chiến dịch truy vết dịch Covid-19. Để đề phòng trường hợp buổi đi xem phim của bạn có liên quan đến yếu tố dịch bệnh, Bộ phận chăm sóc khách hàng sẽ liên lạc với bạn bằng những thông tin bạn cung cấp dưới đây.</p>
+                    <form>
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Họ tên *" name="ht" required />
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Địa chỉ" name="dc" required />
+                            </div>
+                        </div>
+                        <input type="text" class="form-control mt-3" placeholder="Số điện thoại *" name="sdt" required />
+                    </form>
+                </div>
+                <div class="container-horizontal-line my-3"></div>
+                <h5>Xác nhận và gửi hóa đơn</h5>
+                <input type="text" class="form-control" id="email" placeholder="Email *" name="sdt" />
+                <div class="form-check-inline py-3">
+                    <label for="" class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="acc" />Tôi đồng ý với các điều khoản của OREGON Cinema
+                    </label>
+                </div>
+                <a href="/Ticket/Order" class="btn btn-dark mb-3 btn-block">XÁC NHẬN THANH TOÁN</a>
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/Content/HomePage.css">
+    <script>
+        document.addEventListener(
+            "click",
+            function (event) {
+                // If user either clicks X button OR clicks outside the modal window, then close modal by calling closeModal()
+                if (!event.target.closest("#payment")) {
+                    $('.modal-backdrop').hide();
+                }
+            },
+            false
+        )
+    </script>
+</div>

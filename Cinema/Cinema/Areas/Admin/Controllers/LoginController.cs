@@ -18,7 +18,8 @@ namespace Cinema.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Homepage", "Admin");
+            //return View();
         }
 
         [HttpPost]

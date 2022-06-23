@@ -154,14 +154,17 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\BusinessController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FacilityController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HumanResourceController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MediaController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MovieAdminController.cs" />
     <Compile Include="class\AD.cs" />
     <Compile Include="class\ADMIN_ACCOUNT.cs" />
     <Compile Include="class\BILL.cs" />
     <Compile Include="class\CINEMA.cs" />
     <Compile Include="class\CinemaDB.cs" />
     <Compile Include="class\CinemaItem.cs" />
-    <Compile Include="class\CINEMA_IMAGE.cs" />
     <Compile Include="class\CINEMA_LOCATION.cs" />
     <Compile Include="class\DEPARTMENT.cs" />
     <Compile Include="class\DISCOUNT_CODE.cs" />
@@ -185,6 +188,8 @@
     <Compile Include="Controllers\InstructionController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -476,6 +481,12 @@
     <Content Include="Views\Cinema\Cinema.cshtml" />
     <Content Include="Views\Booking\Booking.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\User\UserInfo.cshtml" />
+    <Content Include="Views\Ticket\SelectTicket.cshtml" />
+    <Content Include="Views\Ticket\SelectSeat.cshtml" />
+    <Content Include="Views\Ticket\SelectService.cshtml" />
+    <Content Include="Views\Ticket\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

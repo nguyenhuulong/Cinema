@@ -114,7 +114,7 @@ namespace Cinema.Areas.Admin.Controllers
                     {
                         departments.Add(o);
                     }
-                    ViewBag.departments = departments.Count;
+                    ViewBag.departments = departments.Count();
                 }
 
                 responseMessage = client.GetAsync("GetPost");

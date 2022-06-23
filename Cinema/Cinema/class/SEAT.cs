@@ -1,10 +1,8 @@
-namespace CinemaAPI.Models
-{
+
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("SEAT")]
     public partial class SEAT
@@ -29,4 +27,3 @@ namespace CinemaAPI.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TICKET> TICKETs { get; set; }
     }
-}

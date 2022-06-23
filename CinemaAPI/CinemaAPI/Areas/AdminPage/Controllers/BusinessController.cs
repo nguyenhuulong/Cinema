@@ -346,3 +346,4 @@ namespace CinemaAPI.Areas.AdminPage.Controllers
         }
     }
 }
+

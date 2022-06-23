@@ -1,0 +1,190 @@
+﻿
+<div class="modal-dialog modal-xl modal-dialog-scrollable align-items-center" role="document">
+    <div class="modal-content">
+
+        <div class="modal-body">
+            <div class="booking-2-header d-flex py-3 col-12">
+                <div class="auth-confirm col-3">
+                    <h5>Xin chào, @ViewBag.name</h5>
+                    <h6>Không phải bạn? <a href="#" class="text-base-color" style="text-decoration: underline;">Đăng xuất</a></h6>
+                </div>
+                <h4 class="col-7">
+                    <span class="mx-1">ĐẶT VÉ</span>
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    <span class="text-select mx-1">CHỌN CHỖ</span>
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    <span>DỊCH VỤ</span>
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    <span>THANH TOÁN</span>
+                </h4>
+                <div class="booking-clock col-2">
+                    <h6 class="text-bold">Thời gian còn</h6>
+                    <h5><span>10:00</span></h5>
+                </div>
+            </div>
+            <div class="pre-booking">
+                <div class="pre-info d-flex py-4">
+                    <img src="~/images/movie/poster/@ViewBag.Image" alt="">
+                    <ul>
+                        <h6 class="mb-3"><i class="fa fa-check-circle text-base-color" aria-hidden="true"></i> Bạn đang đặt vé phim: <span>@ViewBag.MovieName (@ViewBag.ScreenType)</span></h6>
+                        <h6 class="mb-3"><i class="fa fa-check-circle text-base-color" aria-hidden="true"></i> Rạp: <span>@ViewBag.CinemaName, @ViewBag.CinemaAddress</span></h6>
+                        <h6 class="mb-3"><i class="fa fa-check-circle text-base-color" aria-hidden="true"></i> Ngày chiếu: <span>@ViewBag.datetime</span></h6>
+                        <h6 class="mb-3"><i class="fa fa-check-circle text-base-color" aria-hidden="true"></i> Giờ chiếu: <span>@ViewBag.showtime</span></h6>
+                    </ul>
+                </div>
+            </div>
+            <div class="seat-select">
+                <h4 class="pt-3">Bạn đã đặt <span class="text-base-color">@ViewBag.TicketCount</span> vé</h4>
+                <h6>Hãy chọn số ghế trống tương ứng số vé của bạn</h6>
+                <div class="seat-map">
+                    <div class="d-flex col-12" id="a">
+                        <div class="seat-row-init d-flex col-2 p-0">
+                            <p class="text-right">1</p>
+                            <p class="text-right">2</p>
+                        </div>
+                        <div class="seat-row-init d-flex col-8 px-3 py-0">
+                            <p class="text-right">3</p>
+                            <p class="text-right">4</p>
+                            <p class="text-right">5</p>
+                            <p class="text-right">6</p>
+                            <p class="text-right">7</p>
+                            <p class="text-right">8</p>
+                            <p class="text-right">9</p>
+                            <p class="text-right">10</p>
+                        </div>
+                        <div class="seat-row-init d-flex col-2 p-0">
+                            <p class="text-right">11</p>
+                            <p class="text-right">12</p>
+                        </div>
+                    </div>
+                    @for (char i = 'A'; i <= 'H'; i++)
+                    {
+                        <div class="d-flex col-12" id="a">
+                            @for (int j = 1; j <= 12; j++)
+                            {
+                                if (i == 'A' && j == 1 || i == 'A' && j == 2 || i == 'A' && j == 11 || i == 'A' && j == 12)
+                                {
+                                    <div class="seat-row d-flex col-1 p-0">
+                                        <div class="btn-seat-staff">
+                                            <label>
+                                                <input type="checkbox" value="1" id="@i + @j" /><i class="fa fa-folder" aria-hidden="true"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    continue;
+                                }
+                                foreach (var item in ViewBag.ListSeatBooked)
+                                {
+                                    if (i.ToString() + j.ToString() == item["SeatName"].ToString())
+                                    {
+                                        <div class="seat-row d-flex col-1 p-0">
+                                            <div class="btn-seat">
+                                                <label>
+                                                    <input type="checkbox" value="1" id="@i + @j" /><i class="fa fa-folder text-dark" aria-hidden="true"></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        j++;
+                                        continue;
+                                    }
+                                }
+                                <div class="seat-row d-flex col-1 p-0">
+                                    <div class="btn-seat">
+                                        <label>
+                                            <input type="checkbox" value="1" id="@i@j" class="none_select" /><i class="fa fa-folder none_select_1" id="@i@j@i@j" onclick="select_seat('@i@j')" aria-hidden="true"></i>
+                                        </label>
+                                    </div>
+                                </div>
+                            }
+                            <p class="mt-4 ml-2">@i</p>
+                        </div>
+                    }
+                </div>
+                <div class="seat-instruction d-flex">
+                    <p><i class="fa fa-folder" aria-hidden="true" style="color: rgb(126, 126, 126);"></i> Ghế trống</p>
+                    <p><i class="fa fa-folder" aria-hidden="true" style="color: black;"></i> Ghế đã đặt</p>
+                    <p><i class="fa fa-folder" aria-hidden="true" style="color: #e52729;"></i> Ghế của bạn</p>
+                    <p><i class="fa fa-folder" aria-hidden="true" style="color: rgb(22, 157, 190);"></i> Ghế nhân viên</p>
+                </div>
+                <h5 class="text-center">Bạn đã chọn ghế: <span id="your-seat" class="text-base-color"></span></h5>
+                <h5 id="alert"></h5>
+                <div class="modal-footer">
+                    <button id="confirm-ticket-quantity" type="button" class="btn btn-lg btn-light text-bold mt-0 ml-3">Quay lại</button>
+                    <button id="confirm-ticket-quantity" type="button" onclick="showtime3()" class="btn btn-lg btn-dark text-bold mt-0 ml-3">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="SelectService" role="dialog"></div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/Content/Homepage.css">
+    <script>
+        var seat = 0;
+        var seat_all = @ViewBag.TicketCount;
+        var seat_arr = new Array();
+        function select_seat(id) {
+            if ($('#' + id).val() == 1) {
+                if (seat == seat_all-1) {
+                    seat_arr.push(id);
+                    seat++;
+                    $('#' + id).removeClass("none_select");
+                    $('#' + id + id).removeClass("none_select_1");
+                    $('#' + id).val(0);
+                    $('.none_select').attr("disabled", true);
+                    $('.none_select_1').css('opacity', '0.6');
+                    $('#' + id + id).addClass("text-danger");
+                    document.getElementById("your-seat").innerHTML = "";
+                    seat_arr.forEach(show);
+                }
+                else if (seat == seat_all) {
+
+                }
+                else {
+                    seat_arr.push(id);
+                    seat++;
+                    $('#' + id).removeClass("none_select");
+                    $('#' + id + id).removeClass("none_select_1");
+                    $('#' + id + id).addClass("text-danger");
+                    document.getElementById("your-seat").innerHTML = "";
+                    seat_arr.forEach(show);
+                    $('#' + id).val(0);
+                    if (seat == seat_all) {
+                        $('.none_select').attr("disabled", true);
+                    }
+                    $('.none_select_1').css('opacity', '1');
+                }
+            }
+            else {
+                $('#' + id).addClass("none_select");
+                $('#' + id + id).addClass("none_select_1");
+                $('.none_select').removeAttr("disabled", true);
+                seat--;
+                seat_arr.pop(id);
+                document.getElementById("your-seat").innerHTML = "";
+                seat_arr.forEach(show);
+                $('#' + id + id).removeClass("text-danger");
+                $('#' + id).val(1);
+                $('.none_select_1').css('opacity', '1');
+            }
+        }
+        function show(value) {
+            document.getElementById("your-seat").innerHTML += value + " ";
+        }
+        function showtime3() {
+            if (seat_arr.length ==@ViewBag.TicketCount) {
+                $.get('/Ticket/SelectService', $.param({ data: seat_arr }, true), function (data) {
+                    $('#2').hide();
+                    $('.modal-backdrop').hide();
+                    $('#SelectService').html(data);
+                    $('#SelectService').modal('show');
+                });
+            }
+            else {
+                document.getElementById("alert").innerHTML = "Vui lòng chọn đủ số ghế !! ";
+            }
+        }
+    </script>
+</div>

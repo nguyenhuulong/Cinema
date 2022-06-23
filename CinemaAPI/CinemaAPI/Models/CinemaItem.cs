@@ -163,4 +163,18 @@ namespace CinemaAPI.Models
         [StringLength(30)]
         public string Nation { get; set; }
     }
+
+    public class User_ID
+    {
+        [StringLength(10)]
+
+        public string UserID { get; set; }
+
+    }
+    public class Seat
+    {
+        [StringLength(4)]
+        public string SeatName { get; set; }
+
+    }
 }
