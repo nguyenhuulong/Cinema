@@ -102,10 +102,10 @@ namespace CinemaAPI.Controllers
 
         //GetMaxSeatID
         [System.Web.Http.HttpGet]
-        [ResponseType(typeof(String))]
+        [ResponseType(typeof(SeatId))]
         public async Task<IHttpActionResult> GetMaxSeatID()
         {
-            var seat = db.Database.SqlQuery<String>("exec GetMaxSeatID");
+            var seat = db.Database.SqlQuery<SeatId>("exec GetMaxSeatID");
             await seat.ToListAsync();
 
             if (seat == null)
@@ -118,10 +118,10 @@ namespace CinemaAPI.Controllers
 
         //GetMaxTicketID
         [System.Web.Http.HttpGet]
-        [ResponseType(typeof(String))]
+        [ResponseType(typeof(TicketId))]
         public async Task<IHttpActionResult> GetMaxTicketID()
         {
-            var seat = db.Database.SqlQuery<String>("exec GetMaxTicketID");
+            var seat = db.Database.SqlQuery<TicketId>("exec GetMaxTicketID");
             await seat.ToListAsync();
 
             if (seat == null)
@@ -135,10 +135,10 @@ namespace CinemaAPI.Controllers
         //GetMaxSVCID
 
         [System.Web.Http.HttpGet]
-        [ResponseType(typeof(String))]
+        [ResponseType(typeof(ServiceToCashId))]
         public async Task<IHttpActionResult> GetMaxSVCID()
         {
-            var seat = db.Database.SqlQuery<String>("exec GetMaxSVCID");
+            var seat = db.Database.SqlQuery<ServiceToCashId>("exec GetMaxSVCID");
             await seat.ToListAsync();
 
             if (seat == null)
@@ -151,10 +151,10 @@ namespace CinemaAPI.Controllers
 
         //GetMaxBillID
         [System.Web.Http.HttpGet]
-        [ResponseType(typeof(String))]
+        [ResponseType(typeof(BillId))]
         public async Task<IHttpActionResult> GetMaxBillID()
         {
-            var seat = db.Database.SqlQuery<String>("exec GetMaxBillID");
+            var seat = db.Database.SqlQuery<BillId>("exec GetMaxBillID");
             await seat.ToListAsync();
 
             if (seat == null)
@@ -189,11 +189,12 @@ namespace CinemaAPI.Controllers
                 return NotFound();
             }
 
-            return Ok(tICKET);
+            return Json(tICKET);
         }
 
         //FindMovieTime
-        [ResponseType(typeof(string))]
+        [System.Web.Http.HttpGet]
+        [ResponseType(typeof(MOVIE_TIME))]
         public async Task<IHttpActionResult> FindMovieTime(string id)
         {
             MOVIE_TIME tICKET = await db.MOVIE_TIME.FindAsync(id);
@@ -202,37 +203,43 @@ namespace CinemaAPI.Controllers
                 return NotFound();
             }
 
-            return Ok(tICKET.MovieTimeID);
+            return Ok(tICKET);
         }
 
         //FindServiceName
 
-        [ResponseType(typeof(string))]
+        [System.Web.Http.HttpGet]
+        [ResponseType(typeof(Servicename))]
         public async Task<IHttpActionResult> FindServiceName(string id)
         {
-            SERVICE tICKET = await db.SERVICEs.FindAsync(id);
-            if (tICKET == null)
+            var seat = db.Database.SqlQuery<Servicename>($"exec FindServiceName N'{id}'");
+            await seat.ToListAsync();
+
+            if (seat == null)
             {
                 return NotFound();
             }
 
-            return Ok(tICKET.ServiceName);
+            return Json(seat.ElementAt(0));
         }
 
         //FindServicePrice
-        [ResponseType(typeof(string))]
+        [System.Web.Http.HttpGet]
+        [ResponseType(typeof(Serviceprice))]
         public async Task<IHttpActionResult> FindServicePrice(string id)
         {
-            SERVICE tICKET = await db.SERVICEs.FindAsync(id);
-            if (tICKET == null)
+            var seat = db.Database.SqlQuery<Serviceprice>($"exec FindServicePrice N'{id}'");
+            await seat.ToListAsync();
+
+            if (seat == null)
             {
                 return NotFound();
             }
 
-            return Ok(tICKET.ServicePrice);
+            return Json(seat.ElementAt(0));
         }
-        //CheckVoucher
-        [ResponseType(typeof(DISCOUNT_CODE))]
+            //CheckVoucher
+            [ResponseType(typeof(DISCOUNT_CODE))]
         public async Task<IHttpActionResult> CheckVoucher(string id)
         {
             DISCOUNT_CODE dISCOUNT = await db.DISCOUNT_CODE.FindAsync(id);

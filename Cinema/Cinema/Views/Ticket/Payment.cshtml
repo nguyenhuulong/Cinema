@@ -3,7 +3,7 @@
         <div class="modal-body">
             <div class="booking-2-header d-flex py-3 col-12">
                 <div class="col-3">
-                    <h5>Xin chào, Hường</h5>
+                    <h5>Xin chào, @ViewBag.name</h5>
                     <h6>Không phải bạn? <a href="#" class="text-base-color" style="text-decoration: underline;">Đăng xuất</a></h6>
                 </div>
                 <h4 class="col-7">
@@ -51,47 +51,48 @@
                         <span class="text-base-color">  @item &nbsp </span>;
                     }
                 </h6>
-                @if (ViewBag.voucher != null)
-                {
-                    <h6 class="py-2">Bạn đã chọn voucher giảm @ViewBag.voucher.DiscountNumber%</h6>
-                }
-                <div class="container-horizontal-line my-3"></div>
-                <h5>Tổng<span class="text-base-color"> @ViewBag.Money.000 VNĐ</span></h5>
-                <div class="container-horizontal-line my-3"></div>
-                <h5>Phương thức thanh toán</h5>
-                <h6 class="py-2">Sử dụng Thẻ quà tặng</h6>
-                <div class="d-flex justify-content-between">
-                    <input type="text" placeholder="Mã thẻ" class="pl-2" style="width: 70%" />
-                    <input type="submit" value="NHẬP THẺ" class="btn btn-dark" style="width: 25%" />
+                @*@if (ViewBag.voucher != null)
+        {
+            <h6 class="py-2">Bạn đã chọn voucher giảm @ViewBag.voucher.DiscountNumber%</h6>
+        }*@
+        <div class="container-horizontal-line my-3"></div>
+        <h5>Tổng<span class="text-base-color"> @ViewBag.Money.000 VNĐ</span></h5>
+        @*<div class="container-horizontal-line my-3"></div>
+        <h5>Phương thức thanh toán</h5>
+        <h6 class="py-2">Sử dụng Thẻ quà tặng</h6>
+        <div class="d-flex justify-content-between">
+            <input type="text" placeholder="Mã thẻ" class="pl-2" style="width: 70%" />
+            <input type="submit" value="NHẬP THẺ" class="btn btn-dark" style="width: 25%" />
+        </div>
+        <h6 class="py-2">Hoặc phương thức thanh toán khác</h6>
+        <button class="btn btn-dark btn-block py-2">THÊM CREDIT CARD HOẶC DEBIT CARD</button>
+        <button class="btn btn-light btn-block font-italic py-2">TRẢ BẰNG <i class="fa fa-paypal" aria-hidden="true"></i>Paypal</button>
+        <div class="container-horizontal-line my-3"></div>
+        <div class="pandemic p-4">
+            <h5 class="text-center">Hãy đảm bảo sự an toàn của bạn</h5>
+            <p>Đảm bảo sự an toàn của bạn và nhân viên tại rạp chính là sự ưu tiên hàng đầu của chúng tôi. Để làm được điều đó, OREGON Cinema đã tham gia vào chiến dịch truy vết dịch Covid-19. Để đề phòng trường hợp buổi đi xem phim của bạn có liên quan đến yếu tố dịch bệnh, Bộ phận chăm sóc khách hàng sẽ liên lạc với bạn bằng những thông tin bạn cung cấp dưới đây.</p>
+            <form>
+                <div class="form-row">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Họ tên *" name="ht" required />
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Địa chỉ" name="dc" required />
+                    </div>
                 </div>
-                <h6 class="py-2">Hoặc phương thức thanh toán khác</h6>
-                <button class="btn btn-dark btn-block py-2">THÊM CREDIT CARD HOẶC DEBIT CARD</button>
-                <button class="btn btn-light btn-block font-italic py-2">TRẢ BẰNG <i class="fa fa-paypal" aria-hidden="true"></i>Paypal</button>
-                <div class="container-horizontal-line my-3"></div>
-                <div class="pandemic p-4">
-                    <h5 class="text-center">Hãy đảm bảo sự an toàn của bạn</h5>
-                    <p>Đảm bảo sự an toàn của bạn và nhân viên tại rạp chính là sự ưu tiên hàng đầu của chúng tôi. Để làm được điều đó, OREGON Cinema đã tham gia vào chiến dịch truy vết dịch Covid-19. Để đề phòng trường hợp buổi đi xem phim của bạn có liên quan đến yếu tố dịch bệnh, Bộ phận chăm sóc khách hàng sẽ liên lạc với bạn bằng những thông tin bạn cung cấp dưới đây.</p>
-                    <form>
-                        <div class="form-row">
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="Họ tên *" name="ht" required />
-                            </div>
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="Địa chỉ" name="dc" required />
-                            </div>
-                        </div>
-                        <input type="text" class="form-control mt-3" placeholder="Số điện thoại *" name="sdt" required />
-                    </form>
-                </div>
-                <div class="container-horizontal-line my-3"></div>
-                <h5>Xác nhận và gửi hóa đơn</h5>
-                <input type="text" class="form-control" id="email" placeholder="Email *" name="sdt" />
-                <div class="form-check-inline py-3">
-                    <label for="" class="form-check-label">
-                        <input type="checkbox" class="form-check-input" name="acc" />Tôi đồng ý với các điều khoản của OREGON Cinema
-                    </label>
-                </div>
+                <input type="text" class="form-control mt-3" placeholder="Số điện thoại *" name="sdt" required />
+            </form>
+        </div>
+        <div class="container-horizontal-line my-3"></div>
+        <h5>Xác nhận và gửi hóa đơn</h5>
+        <input type="text" class="form-control" id="email" placeholder="Email *" name="sdt" />
+        <div class="form-check-inline py-3">
+            <label for="" class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="acc" />Tôi đồng ý với các điều khoản của OREGON Cinema
+            </label>
+        </div>*@
                 <a href="/Ticket/Order" class="btn btn-dark mb-3 btn-block">XÁC NHẬN THANH TOÁN</a>
+                <button id="confirm-ticket-quantity" type="button" class="btn btn-lg btn-light text-bold mb-3 mr-3" style="visibility: hidden;">Quay lại</button>
             </div>
         </div>
     </div>

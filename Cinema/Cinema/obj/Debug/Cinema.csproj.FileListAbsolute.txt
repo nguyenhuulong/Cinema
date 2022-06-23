@@ -334,3 +334,23 @@ F:\Kì 2 Năm 4\T5 Công nghệ lập trình tích hợp\Documents\Cinema\
 F:\Kì 2 Năm 4\T5 Công nghệ lập trình tích hợp\Documents\Cinema\Cinema\Cinema\Cinema\bin\System.Text.Json.xml
 F:\Kì 2 Năm 4\T5 Công nghệ lập trình tích hợp\Documents\Cinema\Cinema\Cinema\Cinema\bin\System.Threading.Tasks.Extensions.xml
 F:\Kì 2 Năm 4\T5 Công nghệ lập trình tích hợp\Documents\Cinema\Cinema\Cinema\Cinema\bin\System.ValueTuple.xml
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\RestSharp.dll
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\System.Buffers.dll
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\System.Memory.dll
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\System.Numerics.Vectors.dll
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\System.Runtime.CompilerServices.Unsafe.dll
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\System.Text.Encodings.Web.dll
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\System.Text.Json.dll
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\System.Threading.Tasks.Extensions.dll
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\System.ValueTuple.dll
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\RestSharp.xml
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\System.Buffers.xml
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\System.Memory.xml
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\System.Numerics.Vectors.xml
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\System.Runtime.CompilerServices.Unsafe.xml
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\System.Text.Encodings.Web.xml
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\System.Text.Json.xml
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\System.Threading.Tasks.Extensions.xml
+D:\Documents\Cinema\Cinema\Cinema\Cinema\bin\System.ValueTuple.xml

@@ -177,4 +177,42 @@ namespace CinemaAPI.Models
         public string SeatName { get; set; }
 
     }
+    public class SeatId
+    {
+        [StringLength(20)]
+        public string SeatID { get; set; }
+
+    }
+    public class MovieTimeId
+    {
+        [StringLength(10)]
+        public string MovieTimeID { get; set; }
+
+    }
+    public class TicketId
+    {
+        [StringLength(10)]
+        public string TicketID { get; set; }
+
+    }
+    public class ServiceToCashId
+    {
+        [StringLength(10)]
+        public string ServiceToCashID { get; set; }
+    }
+    public class BillId
+    {
+        [StringLength(10)]
+        public string BillID { get; set; }
+    }
+    public class Servicename
+    {
+        [StringLength(10)]
+        public string ServiceName { get; set; }
+    }
+    public class Serviceprice
+    {
+        [StringLength(10)]
+        public string ServicePrice { get; set; }
+    }
 }

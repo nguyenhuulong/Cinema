@@ -70,6 +70,7 @@ namespace Cinema.Controllers
         }
         public JsonResult CheckLogin(string name, string password)
         {
+            password = GetMD5(password);
             List<JObject> listacc = new List<JObject>(9999);
             HttpClient client1 = new HttpClient();
             client1.BaseAddress = new Uri("http://localhost:8085/api/UserAPI/");

@@ -22,10 +22,10 @@ namespace CinemaAPI.Controllers
 
         //CheckID
         [System.Web.Http.HttpGet]
-        [ResponseType(typeof(String))]
+        [ResponseType(typeof(User_ID))]
         public async Task<IHttpActionResult> CheckID()
         {
-            var result = db.Database.SqlQuery<String>("exec check_ID");
+            var result = db.Database.SqlQuery<User_ID>("exec check_ID");
             await result.ToListAsync();
             if (result == null)
             {
